@@ -8,6 +8,7 @@ entity vga_driver is
         hsync, vsync: out std_logic;
         BTNU, BTND, BTNL, BTNR: in std_logic; 
         red, green, blue: out std_logic_vector(3 downto 0)
+       
         );
 end vga_driver;
 
@@ -63,6 +64,8 @@ architecture vga_driver_arch of vga_driver is
     
     signal new_white_x, new_white_y: integer;
     
+    signal collision_detected: std_logic := '0'; -- Latch collision state =
+    
 begin
     --- Generate 50MHz clock
     comp_clk50MHz: clock_divider generic map (N => 1) port map(clk, clk50MHz);
@@ -96,54 +99,43 @@ begin
         end if; 
     end process white_ball_movement_proc;
     
-    --- Collision detection
-    collision_detection_proc: process(clk50MHz)
-        variable dx, dy, distance_squared: integer;
-        variable vx_diff, vy_diff: integer;
-        variable nx, ny, tx, ty, p: integer;
-    begin
-        report "Collision detection";
-        if rising_edge(clk50MHz) then
-            report "White ball x: " & integer'image(white_x) & " Blue ball x: " & integer'image(ball_2x);
-            -- Calculate vector differences
-            dx := new_white_x - ball_2x;
-            dy := new_white_y - ball_2y;
-            distance_squared := dx*dx + dy*dy;
+    --- Collision detection and handling
+        collision_detection_proc: process(clk50MHz)
+            variable dx, dy, distance_squared: integer;
+        begin
+           if rising_edge(clk50MHz) then
+                -- Calculate vector differences
+                dx := new_white_x - ball_2x;
+                dy := new_white_y - ball_2y;
+                distance_squared := dx*dx + dy*dy;
+        
+                -- Check for collision and whether it has been processed
+                if distance_squared <= (2 * BALL_RADIUS) ** 2 and collision_detected = '0' then
+                    -- Balls are colliding and collision has not been processed
+                    collision_detected <= '1'; -- Set collision detected flag
     
-            if distance_squared <= (2 * BALL_RADIUS) ** 2 then
-                -- Balls are colliding
-                -- Calculate velocity differences
-                vx_diff := white_vx - ball_2vx;
-                vy_diff := white_vy - ball_2vy;
-                if (dx * vx_diff + dy * vy_diff) < 0 then
-                    -- Only calculate new velocities if balls are moving towards each other
-                    -- Calculate normal and tangent unit vector components
+                    -- Update position of the blue ball by 10 pixels, assuming x direction
+                    ball_2x <= ball_2x + 10;
                     
-                    p := (vx_diff * dx + vy_diff * dy) / distance_squared;
-                    nx := p * dx;
-                    ny := p * dy;
-                    tx := white_vx - nx;
-                    ty := white_vy - ny;
-    
-                    -- Update velocities for an elastic collision
-                    white_vx <= tx - nx;
-                    white_vy <= ty - ny;
-                    ball_2vx <= ball_2vx + nx;
-                    ball_2vy <= ball_2vy + ny;
+                    if white_x > ball_2x then
+                        ball_2vx <= -1; -- Move left
+                    else
+                        ball_2vx <= 1; -- Move right
+                    end if;
+                elsif distance_squared > (2 * BALL_RADIUS) ** 2 then
+                    -- No collision or collision has ended
+                    collision_detected <= '0'; -- Reset collision detected flag
                 end if;
                 
-                -- Reset positions to avoid sticking balls together
-                new_white_x <= white_x;
-                new_white_y <= white_y;
+                -- Update positions if no collision is detected
+                if collision_detected = '0' then
+                    white_x <= new_white_x;
+                    white_y <= new_white_y;
+                    ball_2x <= ball_2x + ball_2vx;
+                    ball_2y <= ball_2y + ball_2vy;
+                end if;
             end if;
-            
-            -- Update positions
-            white_x <= new_white_x;
-            white_y <= new_white_y;
-            ball_2x <= ball_2x + ball_2vx;
-            ball_2y <= ball_2y + ball_2vy;
-        end if;
-    end process collision_detection_proc;
+        end process collision_detection_proc;
     
 --    --- Update Position
 --    position_update_proc: process(clk50MHz)

@@ -26,3 +26,8 @@ set_property PACKAGE_PIN N15 [get_ports {BTNL}];  # "BTNL"
     set_property IOSTANDARD LVCMOS25 [get_ports {BTNL}];
 set_property PACKAGE_PIN R18 [get_ports {BTNR}];  # "BTNR"
     set_property IOSTANDARD LVCMOS25 [get_ports {BTNR}];
+    
+#set_property PACKAGE_PIN U14 [get_ports {debug[0]}];  # "LD7"
+#    set_property IOSTANDARD LVCMOS33 [get_ports {debug[0]}];
+#set_property PACKAGE_PIN U19 [get_ports {debug[1]}];  # "LD7"
+#    set_property IOSTANDARD LVCMOS33 [get_ports {debug[1]}];
