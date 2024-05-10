@@ -41,3 +41,19 @@ set_property src_info {type:XDC file:1 line:25 export:INPUT save:INPUT read:READ
 set_property PACKAGE_PIN N15 [get_ports {BTNL}];  # "BTNL"
 set_property src_info {type:XDC file:1 line:27 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN R18 [get_ports {BTNR}];  # "BTNR"
+set_property src_info {type:XDC file:1 line:30 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN T22 [get_ports {Q[0]}]; # "LED0"
+set_property src_info {type:XDC file:1 line:32 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN T21 [get_ports {Q[1]}]; # "LED1"
+set_property src_info {type:XDC file:1 line:34 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN U22 [get_ports {Q[2]}]; # "LED2"
+set_property src_info {type:XDC file:1 line:36 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN U21 [get_ports {Q[3]}]; # "LED3"
+set_property src_info {type:XDC file:1 line:38 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN V22 [get_ports {Q[4]}];  # "LD4"
+set_property src_info {type:XDC file:1 line:40 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN W22 [get_ports {Q[5]}];  # "LD5"
+set_property src_info {type:XDC file:1 line:42 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN U19 [get_ports {Q[6]}];  # "LD6"
+set_property src_info {type:XDC file:1 line:44 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN U14 [get_ports {Q[7]}];  # "LD7"

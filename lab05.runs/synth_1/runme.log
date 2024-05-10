@@ -26,41 +26,41 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 8 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 1392
+INFO: [Synth 8-7075] Helper process launched with PID 19936
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1368.324 ; gain = 440.219
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1367.383 ; gain = 439.523
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'vga_driver' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:15]
+INFO: [Synth 8-638] synthesizing module 'vga_driver' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:16]
 	Parameter N bound to: 1 - type: integer 
-INFO: [Synth 8-3491] module 'clock_divider' declared at 'C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/clock_divider.vhd:5' bound to instance 'comp_clk50MHz' of component 'clock_divider' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:71]
+INFO: [Synth 8-3491] module 'clock_divider' declared at 'C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/clock_divider.vhd:5' bound to instance 'comp_clk50MHz' of component 'clock_divider' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:72]
 INFO: [Synth 8-638] synthesizing module 'clock_divider' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/clock_divider.vhd:10]
 	Parameter N bound to: 1 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'clock_divider' (0#1) [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/clock_divider.vhd:10]
 	Parameter N bound to: 5000000 - type: integer 
-INFO: [Synth 8-3491] module 'clock_divider' declared at 'C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/clock_divider.vhd:5' bound to instance 'comp_clk10Hz' of component 'clock_divider' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:73]
+INFO: [Synth 8-3491] module 'clock_divider' declared at 'C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/clock_divider.vhd:5' bound to instance 'comp_clk10Hz' of component 'clock_divider' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:74]
 INFO: [Synth 8-638] synthesizing module 'clock_divider__parameterized1' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/clock_divider.vhd:10]
 	Parameter N bound to: 5000000 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'clock_divider__parameterized1' (0#1) [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/clock_divider.vhd:10]
-WARNING: [Synth 8-614] signal 'white_x' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:76]
-WARNING: [Synth 8-614] signal 'white_y' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:76]
-WARNING: [Synth 8-614] signal 'white_x' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:199]
-WARNING: [Synth 8-614] signal 'white_y' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:199]
-WARNING: [Synth 8-614] signal 'ball_2x' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:199]
-WARNING: [Synth 8-614] signal 'ball_2y' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:199]
-INFO: [Synth 8-256] done synthesizing module 'vga_driver' (0#1) [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:15]
+WARNING: [Synth 8-614] signal 'white_x' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:77]
+WARNING: [Synth 8-614] signal 'white_y' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:77]
+WARNING: [Synth 8-614] signal 'white_x' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:212]
+WARNING: [Synth 8-614] signal 'white_y' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:212]
+WARNING: [Synth 8-614] signal 'ball_2x' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:212]
+WARNING: [Synth 8-614] signal 'ball_2y' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:212]
+INFO: [Synth 8-256] done synthesizing module 'vga_driver' (0#1) [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:16]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1476.703 ; gain = 548.598
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1475.930 ; gain = 548.070
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1476.703 ; gain = 548.598
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1475.930 ; gain = 548.070
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1476.703 ; gain = 548.598
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1475.930 ; gain = 548.070
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1476.703 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1475.930 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -73,32 +73,32 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/vga_driver_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1573.090 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1570.117 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 The system cannot find the path specified.
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1573.090 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1570.117 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1573.090 ; gain = 644.984
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1570.117 ; gain = 642.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1573.090 ; gain = 644.984
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1570.117 ; gain = 642.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1573.090 ; gain = 644.984
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1570.117 ; gain = 642.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1573.090 ; gain = 644.984
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1570.117 ; gain = 642.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -109,14 +109,14 @@ Detailed RTL Component Info :
 	   3 Input   32 Bit       Adders := 6     
 +---Registers : 
 	               32 Bit    Registers := 5     
-	                2 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
 	                1 Bit    Registers := 3     
 +---Multipliers : 
 	              32x32  Multipliers := 6     
 +---Muxes : 
-	   2 Input   32 Bit        Muxes := 4     
+	   2 Input   32 Bit        Muxes := 3     
 	   2 Input    4 Bit        Muxes := 2     
-	   2 Input    1 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 2     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -151,24 +151,24 @@ DSP Report: operator red2 is absorbed into DSP red2.
 DSP Report: Generating DSP red2, operation Mode is: (PCIN>>17)+A*B.
 DSP Report: operator red2 is absorbed into DSP red2.
 DSP Report: operator red2 is absorbed into DSP red2.
-DSP Report: Generating DSP collision_detected3, operation Mode is: A*B.
-DSP Report: operator collision_detected3 is absorbed into DSP collision_detected3.
-DSP Report: operator collision_detected3 is absorbed into DSP collision_detected3.
-DSP Report: Generating DSP collision_detected3, operation Mode is: A*B.
-DSP Report: operator collision_detected3 is absorbed into DSP collision_detected3.
-DSP Report: operator collision_detected3 is absorbed into DSP collision_detected3.
-DSP Report: Generating DSP collision_detected3, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator collision_detected3 is absorbed into DSP collision_detected3.
-DSP Report: operator collision_detected3 is absorbed into DSP collision_detected3.
-DSP Report: Generating DSP collision_detected3, operation Mode is: A*B.
-DSP Report: operator collision_detected3 is absorbed into DSP collision_detected3.
-DSP Report: operator collision_detected3 is absorbed into DSP collision_detected3.
-DSP Report: Generating DSP collision_detected3, operation Mode is: A*B.
-DSP Report: operator collision_detected3 is absorbed into DSP collision_detected3.
-DSP Report: operator collision_detected3 is absorbed into DSP collision_detected3.
-DSP Report: Generating DSP collision_detected3, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator collision_detected3 is absorbed into DSP collision_detected3.
-DSP Report: operator collision_detected3 is absorbed into DSP collision_detected3.
+DSP Report: Generating DSP Q3, operation Mode is: A*B.
+DSP Report: operator Q3 is absorbed into DSP Q3.
+DSP Report: operator Q3 is absorbed into DSP Q3.
+DSP Report: Generating DSP Q3, operation Mode is: A*B.
+DSP Report: operator Q3 is absorbed into DSP Q3.
+DSP Report: operator Q3 is absorbed into DSP Q3.
+DSP Report: Generating DSP Q3, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator Q3 is absorbed into DSP Q3.
+DSP Report: operator Q3 is absorbed into DSP Q3.
+DSP Report: Generating DSP Q3, operation Mode is: A*B.
+DSP Report: operator Q3 is absorbed into DSP Q3.
+DSP Report: operator Q3 is absorbed into DSP Q3.
+DSP Report: Generating DSP Q3, operation Mode is: A*B.
+DSP Report: operator Q3 is absorbed into DSP Q3.
+DSP Report: operator Q3 is absorbed into DSP Q3.
+DSP Report: Generating DSP Q3, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator Q3 is absorbed into DSP Q3.
+DSP Report: operator Q3 is absorbed into DSP Q3.
 DSP Report: Generating DSP blue2, operation Mode is: A*B.
 DSP Report: operator blue2 is absorbed into DSP blue2.
 DSP Report: operator blue2 is absorbed into DSP blue2.
@@ -188,24 +188,24 @@ DSP Report: Generating DSP blue2, operation Mode is: (PCIN>>17)+A*B.
 DSP Report: operator blue2 is absorbed into DSP blue2.
 DSP Report: operator blue2 is absorbed into DSP blue2.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 1573.090 ; gain = 644.984
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1570.117 ; gain = 642.258
 ---------------------------------------------------------------------------------
+ Sort Area is  Q3_7 : 0 0 : 2701 4456 : Used 1 time 0
+ Sort Area is  Q3_7 : 0 1 : 1755 4456 : Used 1 time 0
+ Sort Area is  Q3_9 : 0 0 : 2701 4456 : Used 1 time 0
+ Sort Area is  Q3_9 : 0 1 : 1755 4456 : Used 1 time 0
  Sort Area is  blue2_b : 0 0 : 2701 4456 : Used 1 time 0
  Sort Area is  blue2_b : 0 1 : 1755 4456 : Used 1 time 0
  Sort Area is  blue2_d : 0 0 : 2701 4456 : Used 1 time 0
  Sort Area is  blue2_d : 0 1 : 1755 4456 : Used 1 time 0
- Sort Area is  collision_detected3_7 : 0 0 : 2701 4456 : Used 1 time 0
- Sort Area is  collision_detected3_7 : 0 1 : 1755 4456 : Used 1 time 0
- Sort Area is  collision_detected3_9 : 0 0 : 2701 4456 : Used 1 time 0
- Sort Area is  collision_detected3_9 : 0 1 : 1755 4456 : Used 1 time 0
  Sort Area is  red2_0 : 0 0 : 2701 4456 : Used 1 time 0
  Sort Area is  red2_0 : 0 1 : 1755 4456 : Used 1 time 0
  Sort Area is  red2_5 : 0 0 : 2701 4456 : Used 1 time 0
  Sort Area is  red2_5 : 0 1 : 1755 4456 : Used 1 time 0
+ Sort Area is  Q3_8 : 0 0 : 2158 2158 : Used 1 time 0
+ Sort Area is  Q3_a : 0 0 : 2158 2158 : Used 1 time 0
  Sort Area is  blue2_c : 0 0 : 2158 2158 : Used 1 time 0
  Sort Area is  blue2_e : 0 0 : 2158 2158 : Used 1 time 0
- Sort Area is  collision_detected3_8 : 0 0 : 2158 2158 : Used 1 time 0
- Sort Area is  collision_detected3_a : 0 0 : 2158 2158 : Used 1 time 0
  Sort Area is  red2_3 : 0 0 : 2158 2158 : Used 1 time 0
  Sort Area is  red2_6 : 0 0 : 2158 2158 : Used 1 time 0
 ---------------------------------------------------------------------------------
@@ -244,19 +244,19 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1573.090 ; gain = 644.984
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1570.117 ; gain = 642.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1573.090 ; gain = 644.984
+Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1570.117 ; gain = 642.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1573.090 ; gain = 644.984
+Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1570.117 ; gain = 642.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -274,37 +274,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1573.090 ; gain = 644.984
+Finished IO Insertion : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1570.117 ; gain = 642.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1573.090 ; gain = 644.984
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1570.117 ; gain = 642.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1573.090 ; gain = 644.984
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1570.117 ; gain = 642.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1573.090 ; gain = 644.984
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1570.117 ; gain = 642.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1573.090 ; gain = 644.984
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1570.117 ; gain = 642.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1573.090 ; gain = 644.984
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1570.117 ; gain = 642.258
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -346,42 +346,43 @@ Report Cell Usage:
 |      |Cell    |Count |
 +------+--------+------+
 |1     |BUFG    |     3|
-|2     |CARRY4  |   226|
+|2     |CARRY4  |   222|
 |3     |DSP48E1 |    18|
-|4     |LUT1    |   135|
-|5     |LUT2    |   655|
-|6     |LUT3    |    98|
-|7     |LUT4    |    44|
+|4     |LUT1    |   142|
+|5     |LUT2    |   624|
+|6     |LUT3    |    65|
+|7     |LUT4    |    11|
 |8     |LUT5    |     5|
 |9     |LUT6    |    19|
-|10    |FDRE    |   229|
-|11    |IBUF    |     5|
-|12    |OBUF    |    14|
+|10    |FDRE    |   226|
+|11    |FDSE    |     1|
+|12    |IBUF    |     5|
+|13    |OBUF    |    22|
 +------+--------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1573.090 ; gain = 644.984
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1570.117 ; gain = 642.258
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:19 . Memory (MB): peak = 1573.090 ; gain = 548.598
-Synthesis Optimization Complete : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1573.090 ; gain = 644.984
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:14 ; elapsed = 00:00:19 . Memory (MB): peak = 1570.117 ; gain = 548.070
+Synthesis Optimization Complete : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1570.117 ; gain = 642.258
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1573.090 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 244 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1570.117 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 240 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 WARNING: [Netlist 29-101] Netlist 'vga_driver' is not ideal for floorplanning, since the cellview 'vga_driver' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1573.090 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1570.117 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 The system cannot find the path specified.
-Synth Design complete | Checksum: 6daacd23
+Synth Design complete | Checksum: 62305fa8
 INFO: [Common 17-83] Releasing license: Synthesis
 29 Infos, 10 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1573.090 ; gain = 1066.594
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1573.090 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1570.117 ; gain = 1063.227
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1570.117 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Mashiro/lab05/lab05.runs/synth_1/vga_driver.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file vga_driver_utilization_synth.rpt -pb vga_driver_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri May 10 01:17:43 2024...
+INFO: [Common 17-206] Exiting Vivado at Fri May 10 17:41:40 2024...

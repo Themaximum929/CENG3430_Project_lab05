@@ -7,8 +7,9 @@ entity vga_driver is
         clk: in std_logic;
         hsync, vsync: out std_logic;
         BTNU, BTND, BTNL, BTNR: in std_logic; 
-        red, green, blue: out std_logic_vector(3 downto 0)
+        red, green, blue: out std_logic_vector(3 downto 0);
        
+        Q: out std_logic_vector(7 downto 0) := "00000000"
         );
 end vga_driver;
 
@@ -104,6 +105,14 @@ begin
             variable dx, dy, distance_squared: integer;
         begin
            if rising_edge(clk50MHz) then
+               if collision_detected = '0' then
+                    Q(1) <= '1';
+                    white_x <= new_white_x;
+                    white_y <= new_white_y;
+                    ball_2x <= ball_2x + ball_2vx;
+                    ball_2y <= ball_2y + ball_2vy;
+                end if;
+        
                 -- Calculate vector differences
                 dx := new_white_x - ball_2x;
                 dy := new_white_y - ball_2y;
@@ -113,27 +122,31 @@ begin
                 if distance_squared <= (2 * BALL_RADIUS) ** 2 and collision_detected = '0' then
                     -- Balls are colliding and collision has not been processed
                     collision_detected <= '1'; -- Set collision detected flag
+                    Q(0) <= '1';
+                    Q(1) <= '0';
     
                     -- Update position of the blue ball by 10 pixels, assuming x direction
-                    ball_2x <= ball_2x + 10;
+                    ball_2x <= ball_2x + 100;
                     
-                    if white_x > ball_2x then
-                        ball_2vx <= -1; -- Move left
-                    else
-                        ball_2vx <= 1; -- Move right
-                    end if;
+--                    if white_x > ball_2x then
+--                        ball_2vx <= -1; -- Move left
+--                    else
+--                        ball_2vx <= 1; -- Move right
+--                    end if;
                 elsif distance_squared > (2 * BALL_RADIUS) ** 2 then
                     -- No collision or collision has ended
                     collision_detected <= '0'; -- Reset collision detected flag
                 end if;
                 
-                -- Update positions if no collision is detected
-                if collision_detected = '0' then
-                    white_x <= new_white_x;
-                    white_y <= new_white_y;
-                    ball_2x <= ball_2x + ball_2vx;
-                    ball_2y <= ball_2y + ball_2vy;
-                end if;
+                -- Update positions if no collision is detected               
+--                if collision_detected = '0' then
+--                    Q(0) <= '0'; 
+--                    Q(2) <= '1';
+--                    white_x <= new_white_x;
+--                    white_y <= new_white_y;
+--                    ball_2x <= ball_2x + ball_2vx;
+--                    ball_2y <= ball_2y + ball_2vy;
+--                end if;
             end if;
         end process collision_detection_proc;
     
