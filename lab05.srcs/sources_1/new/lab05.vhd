@@ -65,7 +65,7 @@ architecture vga_driver_arch of vga_driver is
     
     signal new_white_x, new_white_y: integer;
     
-    signal collision_detected: std_logic := '0'; -- Latch collision state =
+    signal collision_detected: std_logic := '0'; -- Latch collision state
     
 begin
     --- Generate 50MHz clock
@@ -73,31 +73,71 @@ begin
     --- Generate 10Mhz clock
     comp_clk10Hz: clock_divider generic map (N => 5000000) port map (clk, clk10Hz);
     
-    --- Movement process:
-    white_ball_movement_proc: process (clk10Hz, BTNU, BTND, BTNL, BTNR)
+    --- Movement process: 8 Directions
+    white_ball_movement_proc: process (clk10Hz, BTNU, BTNL, BTNR)
+        variable direction: integer range 0 to 7 := 0; -- 0 = right, 1 = up-right, 2 = up, ..., 7 = down-right
+        variable btnl_pressed, btnr_pressed: std_logic := '0';
     begin
-           new_white_x <= white_x;
-           new_white_y <= white_y;
-    
-        if rising_edge(clk10Hz) then
-            if BTNU = '1' then 
-                if white_y - move_pixels > V_START then
-                    white_y <= white_y - move_pixels;
-                end if;
-            elsif BTND = '1' then
-                if white_y + move_pixels < V_END then
-                    white_y <= white_y + move_pixels;
-                end if;
-            elsif BTNL = '1' then
-                if white_x - move_pixels > H_START then
-                    white_x <= white_x - move_pixels;
-                end if;
-            elsif BTNR = '1' then
-                if white_x + move_pixels < H_END then
-                    white_x <= white_x + move_pixels;
-                end if; 
+        new_white_x <= white_x;
+        new_white_y <= white_y;
+            -- Prevent multi-rotation on one click
+            if rising_edge(clk10Hz) then
+                if BTNL = '1' and btnl_pressed = '0' then
+                direction := (direction + 1) mod 8;
+                btnl_pressed := '1';
+            elsif BTNL = '0' then
+                btnl_pressed := '0';
             end if;
-        end if; 
+    
+            if BTNR = '1' and btnr_pressed = '0' then
+                direction := (direction - 1) mod 8;
+                btnr_pressed := '1';
+            elsif BTNR = '0' then
+                btnr_pressed := '0';
+            end if;
+            
+            if BTNU = '1' then
+                case direction is
+                    when 0 =>
+                        if white_x + move_pixels < H_END then
+                            white_x <= white_x + move_pixels;
+                        end if;
+                    when 1 =>
+                        if white_x + move_pixels < H_END and white_y - move_pixels > V_START then
+                            white_x <= white_x + move_pixels;
+                            white_y <= white_y - move_pixels;
+                        end if;
+                    when 2 =>
+                        if white_y - move_pixels > V_START then
+                            white_y <= white_y - move_pixels;
+                        end if;
+                    when 3 =>
+                        if white_x - move_pixels > H_START and white_y - move_pixels > V_START then
+                            white_x <= white_x - move_pixels;
+                            white_y <= white_y - move_pixels;
+                        end if;
+                    when 4 =>
+                        if white_x - move_pixels > H_START then
+                            white_x <= white_x - move_pixels;
+                        end if;
+                    when 5 =>
+                        if white_x - move_pixels > H_START and white_y + move_pixels < V_END then
+                            white_x <= white_x - move_pixels;
+                            white_y <= white_y + move_pixels;
+                        end if;
+                    when 6 =>
+                        if white_y + move_pixels < V_END then
+                            white_y <= white_y + move_pixels;
+                        end if;
+                    when 7 =>
+                        if white_x + move_pixels < H_END and white_y + move_pixels < V_END then
+                            white_x <= white_x + move_pixels;
+                            white_y <= white_y + move_pixels;
+                        end if;
+                    when others => null;
+                end case;
+            end if;
+        end if;
     end process white_ball_movement_proc;
     
     --- Collision detection and handling
@@ -128,38 +168,13 @@ begin
                     -- Update position of the blue ball by 10 pixels, assuming x direction
                     ball_2x <= ball_2x + 100;
                     
---                    if white_x > ball_2x then
---                        ball_2vx <= -1; -- Move left
---                    else
---                        ball_2vx <= 1; -- Move right
---                    end if;
+
                 elsif distance_squared > (2 * BALL_RADIUS) ** 2 then
                     -- No collision or collision has ended
                     collision_detected <= '0'; -- Reset collision detected flag
                 end if;
-                
-                -- Update positions if no collision is detected               
---                if collision_detected = '0' then
---                    Q(0) <= '0'; 
---                    Q(2) <= '1';
---                    white_x <= new_white_x;
---                    white_y <= new_white_y;
---                    ball_2x <= ball_2x + ball_2vx;
---                    ball_2y <= ball_2y + ball_2vy;
---                end if;
             end if;
         end process collision_detection_proc;
-    
---    --- Update Position
---    position_update_proc: process(clk50MHz)
---    begin
---        if rising_edge(clk50MHz) then
---            white_x <= white_x + white_vx;
---            white_y <= white_y + white_vy;
---            ball_2x <= ball_2x + ball_2vx;
---            ball_2y <= ball_2y + ball_2vy;
---        end if;
---    end process position_update_proc; 
     
     --- Horizontal Divider
     hcount_proc: process(clk50MHz)
