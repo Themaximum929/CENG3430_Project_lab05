@@ -99,47 +99,53 @@ begin
             elsif BTNR = '0' then
                 btnr_pressed := '0';
             end if;
-            -- Update white ball 
-            if BTNU = '1' then
-                case direction is
-                    when 0 =>
-                        if white_x + move_pixels < H_END then
-                            white_x <= white_x + move_pixels;
-                        end if;
-                    when 1 =>
-                        if white_x + move_pixels < H_END and white_y - move_pixels > V_START then
-                            white_x <= white_x + move_pixels;
-                            white_y <= white_y - move_pixels;
-                        end if;
-                    when 2 =>
-                        if white_y - move_pixels > V_START then
-                            white_y <= white_y - move_pixels;
-                        end if;
-                    when 3 =>
-                        if white_x - move_pixels > H_START and white_y - move_pixels > V_START then
-                            white_x <= white_x - move_pixels;
-                            white_y <= white_y - move_pixels;
-                        end if;
-                    when 4 =>
-                        if white_x - move_pixels > H_START then
-                            white_x <= white_x - move_pixels;
-                        end if;
-                    when 5 =>
-                        if white_x - move_pixels > H_START and white_y + move_pixels < V_END then
-                            white_x <= white_x - move_pixels;
-                            white_y <= white_y + move_pixels;
-                        end if;
-                    when 6 =>
-                        if white_y + move_pixels < V_END then
-                            white_y <= white_y + move_pixels;
-                        end if;
-                    when 7 =>
-                        if white_x + move_pixels < H_END and white_y + move_pixels < V_END then
-                            white_x <= white_x + move_pixels;
-                            white_y <= white_y + move_pixels;
-                        end if;
-                    when others => null;
-                end case;
+            -- Update white ball
+            if BTNU = '0' then
+                -- Update position based on velocity
+                white_x <= white_x + white_vx;
+                white_y <= white_y + white_vy;
+                
+                -- Apply friction (deceleration)
+                if white_vx > 0 then
+                    white_vx <= white_vx - 1;
+                elsif white_vx < 0 then
+                    white_vx <= white_vx + 1;
+                end if;
+                if white_vy > 0 then
+                    white_vy <= white_vy - 1;
+                elsif white_vy < 0 then
+                    white_vy <= white_vy + 1;
+                end if;
+                
+            else
+            --- if BTNU = '1' then
+            case direction is
+                when 0 =>  -- Right
+                    white_vx <= move_pixels;
+                    white_vy <= 0;
+                when 1 =>  -- Up-Right
+                    white_vx <= move_pixels;
+                    white_vy <= -move_pixels;
+                when 2 =>  -- Up
+                    white_vx <= 0;
+                    white_vy <= -move_pixels;
+                when 3 =>  -- Up-Left
+                    white_vx <= -move_pixels;
+                    white_vy <= -move_pixels;
+                when 4 =>  -- Left
+                    white_vx <= -move_pixels;
+                    white_vy <= 0;
+                when 5 =>  -- Down-Left
+                    white_vx <= -move_pixels;
+                    white_vy <= move_pixels;
+                when 6 =>  -- Down
+                    white_vx <= 0;
+                    white_vy <= move_pixels;
+                when 7 =>  -- Down-Right
+                    white_vx <= move_pixels;
+                    white_vy <= move_pixels;
+                when others => null;
+            end case;
             end if;
         end if;
     end process white_ball_movement_proc;

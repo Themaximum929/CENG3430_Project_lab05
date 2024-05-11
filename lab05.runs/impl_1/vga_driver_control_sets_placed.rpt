@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Sat May 11 11:32:05 2024
+| Date         : Sat May 11 12:04:05 2024
 | Host         : DESKTOP-J5VP46H running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file vga_driver_control_sets_placed.rpt
 | Design       : vga_driver
@@ -23,8 +23,8 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    13 |
-|    Minimum number of control sets                        |    13 |
+| Total control sets                                       |    14 |
+|    Minimum number of control sets                        |    14 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
 | Unused register locations in slices containing registers |    40 |
@@ -39,7 +39,7 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    13 |
+| Total control sets |    14 |
 | >= 0 to < 4        |     5 |
 | >= 4 to < 6        |     1 |
 | >= 6 to < 8        |     0 |
@@ -47,7 +47,7 @@ Table of Contents
 | >= 10 to < 12      |     0 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
-| >= 16              |     7 |
+| >= 16              |     8 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -61,7 +61,7 @@ Table of Contents
 | No           | No                    | No                     |               8 |            5 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |              97 |           28 |
-| Yes          | No                    | No                     |              95 |           29 |
+| Yes          | No                    | No                     |             159 |           41 |
 | Yes          | No                    | Yes                    |               0 |            0 |
 | Yes          | Yes                   | No                     |              32 |            9 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
@@ -75,17 +75,18 @@ Table of Contents
 +-------------------------+---------------------+-----------------------------------+------------------+----------------+--------------+
 |  hcount_reg[31]_i_3_n_0 |                     |                                   |                1 |              1 |         1.00 |
 |  hcount_reg[31]_i_3_n_0 |                     | sel                               |                1 |              1 |         1.00 |
-|  hcount_reg[31]_i_3_n_0 | collision_detected  | sel                               |                1 |              1 |         1.00 |
 |  hcount_reg[31]_i_3_n_0 | hcount[31]_i_1_n_0  |                                   |                1 |              1 |         1.00 |
+|  hcount_reg[31]_i_3_n_0 | collision_detected  | sel                               |                1 |              1 |         1.00 |
 |  clk_IBUF_BUFG          |                     |                                   |                2 |              2 |         1.00 |
 |  clk10Hz_BUFG           |                     |                                   |                2 |              5 |         2.50 |
 |  hcount_reg[31]_i_3_n_0 | sel                 |                                   |                8 |             30 |         3.75 |
 |  hcount_reg[31]_i_3_n_0 | hcount[31]_i_1_n_0  | vcount[31]_i_1_n_0                |                8 |             31 |         3.88 |
-|  clk10Hz_BUFG           | white_x[31]_i_1_n_0 |                                   |               12 |             32 |         2.67 |
-|  clk10Hz_BUFG           | white_y[31]_i_1_n_0 |                                   |                8 |             32 |         4.00 |
+|  hcount_reg[31]_i_3_n_0 |                     | hcount[31]_i_1_n_0                |                9 |             32 |         3.56 |
+|  clk10Hz_BUFG           | white_vx[0]_i_1_n_0 |                                   |                8 |             32 |         4.00 |
+|  clk10Hz_BUFG           | white_vy[0]_i_1_n_0 |                                   |                8 |             32 |         4.00 |
 |  clk_IBUF_BUFG          |                     | comp_clk50MHz/pulse               |                9 |             32 |         3.56 |
 |  clk_IBUF_BUFG          |                     | comp_clk10Hz/count[31]_i_1__0_n_0 |                9 |             32 |         3.56 |
-|  hcount_reg[31]_i_3_n_0 |                     | hcount[31]_i_1_n_0                |                9 |             32 |         3.56 |
+|  clk10Hz_BUFG           | white_y[31]_i_1_n_0 |                                   |               16 |             64 |         4.00 |
 +-------------------------+---------------------+-----------------------------------+------------------+----------------+--------------+
 
 
