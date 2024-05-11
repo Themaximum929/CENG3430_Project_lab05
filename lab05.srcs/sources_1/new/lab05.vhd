@@ -67,6 +67,10 @@ architecture vga_driver_arch of vga_driver is
     
     signal collision_detected: std_logic := '0'; -- Latch collision state
     
+    constant BEAM_LENGTH: integer := 200; -- For beam visualization
+    
+    signal direction: integer range 0 to 7 := 0; --- White ball direction
+    
 begin
     --- Generate 50MHz clock
     comp_clk50MHz: clock_divider generic map (N => 1) port map(clk, clk50MHz);
@@ -75,7 +79,7 @@ begin
     
     --- Movement process: 8 Directions
     white_ball_movement_proc: process (clk10Hz, BTNU, BTNL, BTNR)
-        variable direction: integer range 0 to 7 := 0; -- 0 = right, 1 = up-right, 2 = up, ..., 7 = down-right
+        --- variable direction: integer range 0 to 7 := 0; -- 0 = right, 1 = up-right, 2 = up, ..., 7 = down-right
         variable btnl_pressed, btnr_pressed: std_logic := '0';
     begin
         new_white_x <= white_x;
@@ -83,19 +87,19 @@ begin
             -- Prevent multi-rotation on one click
             if rising_edge(clk10Hz) then
                 if BTNL = '1' and btnl_pressed = '0' then
-                direction := (direction + 1) mod 8;
+                direction <= (direction + 1) mod 8;
                 btnl_pressed := '1';
             elsif BTNL = '0' then
                 btnl_pressed := '0';
             end if;
     
             if BTNR = '1' and btnr_pressed = '0' then
-                direction := (direction - 1) mod 8;
+                direction <= (direction - 1) mod 8;
                 btnr_pressed := '1';
             elsif BTNR = '0' then
                 btnr_pressed := '0';
             end if;
-            
+            -- Update white ball 
             if BTNU = '1' then
                 case direction is
                     when 0 =>
@@ -204,7 +208,7 @@ begin
     end process vcount_proc;
     
     --- Generate hsync
-    hsync_gen_proc: process(hcount) 
+    hsync_gen_proc: process(hcount)     
     begin
         if (hcount < H_SYNC) then
             hsync <= '0';
@@ -224,29 +228,94 @@ begin
     end process vsync_gen_proc;
     
     --- Generate RGB signals for 1024x600 display area
-    data_output_proc: process (hcount, vcount)
-    begin
-        if ((hcount >= H_START and hcount < H_END) and
-            (vcount >= V_START and vcount < V_END)) then
-            --- Display Area (draw the square)
-    if ( (hcount - white_x) ** 2 + (vcount - white_y) ** 2 <= BALL_RADIUS ** 2) then
-                red <= "1111";
-                green <= "1111";
-                blue <= "1111";
-            elsif ( (hcount - ball_2x) ** 2 + (vcount - ball_2y) ** 2 <= BALL_RADIUS ** 2) then
-                red <= "0000";
-                green <= "0000";
-                blue <= "1111";
-            else
-                red <= "0000"; 
-                green <= "0000";
-                blue <= "0000";
-            end if;
-        else
+data_output_proc: process (hcount, vcount, white_x, white_y, white_vx, white_vy, ball_2x, ball_2y)
+begin
+    if ((hcount >= H_START and hcount < H_END) and
+        (vcount >= V_START and vcount < V_END)) then
+         -- Display Area
+        red <= "0000";
+        green <= "0000";
+        blue <= "0000";
+        
+        -- Display Area (draw the first and second ball and the beam for the first ball)
+        if ((hcount - white_x)**2 + (vcount - white_y)**2 <= BALL_RADIUS**2) then
+            -- Draw first ball in white
+            red <= "1111";
+            green <= "1111";
+            blue <= "1111";
+        elsif ((hcount - ball_2x)**2 + (vcount - ball_2y)**2 <= BALL_RADIUS**2) then
+            -- Draw second ball in blue
             red <= "0000";
             green <= "0000";
-            blue <= "0000"; 
+            blue <= "1111";
+        
+        else
+            -- Draw the beam based on the direction
+            case direction is
+                when 0 =>  -- Right
+                    if hcount > white_x and hcount <= white_x + BEAM_LENGTH and abs(vcount - white_y) <= 2 then
+                        red <= "1111";
+                        green <= "0000";
+                        blue <= "0000";
+                    end if;
+                when 7 =>  -- Down-Right
+                    if hcount > white_x and vcount > white_y and
+                       abs((hcount - white_x) - (vcount - white_y)) <= 2 and
+                       (hcount - white_x) <= BEAM_LENGTH and (vcount - white_y) <= BEAM_LENGTH then
+                        red <= "1111";
+                        green <= "0000";
+                        blue <= "0000";
+                    end if;
+                when 6 =>  -- Down
+                    if vcount > white_y and vcount <= white_y + BEAM_LENGTH and abs(hcount - white_x) <= 2 then
+                        red <= "1111";
+                        green <= "0000";
+                        blue <= "0000";
+                    end if;
+                when 5 =>  -- Down-Left
+                    if hcount < white_x and vcount > white_y and
+                       abs((white_x - hcount) - (vcount - white_y)) <= 2 and
+                       (white_x - hcount) <= BEAM_LENGTH and (vcount - white_y) <= BEAM_LENGTH then
+                        red <= "1111";
+                        green <= "0000";
+                        blue <= "0000";
+                    end if;
+                when 4 =>  -- Left
+                    if hcount < white_x and hcount >= white_x - BEAM_LENGTH and abs(vcount - white_y) <= 2 then
+                        red <= "1111";
+                        green <= "0000";
+                        blue <= "0000";
+                    end if;
+                when 3 =>  -- Up-Left
+                    if hcount < white_x and vcount < white_y and
+                       abs((white_x - hcount) - (white_y - vcount)) <= 2 and
+                       (white_x - hcount) <= BEAM_LENGTH and (white_y - vcount) <= BEAM_LENGTH then
+                        red <= "1111";
+                        green <= "0000";
+                        blue <= "0000";
+                    end if;
+                when 2 =>  -- Up
+                    if vcount < white_y and vcount >= white_y - BEAM_LENGTH and abs(hcount - white_x) <= 2 then
+                        red <= "1111";
+                        green <= "0000";
+                        blue <= "0000";
+                    end if;
+                when 1 =>  -- Up-Right
+                    if hcount > white_x and vcount < white_y and
+                       abs((hcount - white_x) - (white_y - vcount)) <= 2 and
+                       (hcount - white_x) <= BEAM_LENGTH and (white_y - vcount) <= BEAM_LENGTH then
+                        red <= "1111";
+                        green <= "0000";
+                        blue <= "0000";
+                    end if;
+            end case;
         end if;
-    end process data_output_proc;
+    else
+        -- Outside display area
+        red <= "0000";
+        green <= "0000";
+        blue <= "0000"; 
+    end if;
+end process data_output_proc;
     
 end vga_driver_arch;
