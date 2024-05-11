@@ -1,6 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 entity vga_driver is
     Port ( 
@@ -61,15 +62,24 @@ architecture vga_driver_arch of vga_driver is
     signal ball_2vx: integer := 0;
     signal ball_2vy: integer := 0;  --initial ball 2 pos, v 
     
-    constant move_pixels: integer := 10;
+    constant move_pixels: integer := 15;
     
     signal new_white_x, new_white_y: integer;
+    signal new_ball2_x, new_ball2_y: integer;
     
     signal collision_detected: std_logic := '0'; -- Latch collision state
     
     constant BEAM_LENGTH: integer := 200; -- For beam visualization
     
     signal direction: integer range 0 to 7 := 0; --- White ball direction
+    
+    signal update_velocities: std_logic;
+    signal ball_2x_next, ball_2y_next: integer;
+
+    -- Signals for collision handling
+    -- signal ball_2_segment: integer range 0 to 7; -- Segment of the blue ball that was hit
+    signal ball_2_new_vx, ball_2_new_vy: integer; -- New velocity for the blue ball after collision
+   
     
 begin
     --- Generate 50MHz clock
@@ -84,6 +94,8 @@ begin
     begin
         new_white_x <= white_x;
         new_white_y <= white_y;
+        new_ball2_x <= ball_2x;
+        new_ball2_y <= ball_2y;
             -- Prevent multi-rotation on one click
             if rising_edge(clk10Hz) then
                 if BTNL = '1' and btnl_pressed = '0' then
@@ -99,11 +111,14 @@ begin
             elsif BTNR = '0' then
                 btnr_pressed := '0';
             end if;
-            -- Update white ball
+            -- Update ball
             if BTNU = '0' then
                 -- Update position based on velocity
                 white_x <= white_x + white_vx;
                 white_y <= white_y + white_vy;
+                
+                ball_2x <= ball_2x + ball_2vx;
+                ball_2y <= ball_2y + ball_2vy;
                 
                 -- Apply friction (deceleration)
                 if white_vx > 0 then
@@ -150,41 +165,47 @@ begin
         end if;
     end process white_ball_movement_proc;
     
-    --- Collision detection and handling
-        collision_detection_proc: process(clk50MHz)
-            variable dx, dy, distance_squared: integer;
-        begin
-           if rising_edge(clk50MHz) then
-               if collision_detected = '0' then
-                    Q(1) <= '1';
-                    white_x <= new_white_x;
-                    white_y <= new_white_y;
-                    ball_2x <= ball_2x + ball_2vx;
-                    ball_2y <= ball_2y + ball_2vy;
-                end if;
-        
-                -- Calculate vector differences
-                dx := new_white_x - ball_2x;
-                dy := new_white_y - ball_2y;
-                distance_squared := dx*dx + dy*dy;
-        
-                -- Check for collision and whether it has been processed
-                if distance_squared <= (2 * BALL_RADIUS) ** 2 and collision_detected = '0' then
-                    -- Balls are colliding and collision has not been processed
-                    collision_detected <= '1'; -- Set collision detected flag
-                    Q(0) <= '1';
-                    Q(1) <= '0';
-    
-                    -- Update position of the blue ball by 10 pixels, assuming x direction
-                    ball_2x <= ball_2x + 100;
-                    
-
-                elsif distance_squared > (2 * BALL_RADIUS) ** 2 then
-                    -- No collision or collision has ended
-                    collision_detected <= '0'; -- Reset collision detected flag
-                end if;
+    --- Collision detection
+    collision_detection_proc: process(clk50MHz)
+        variable dx, dy, distance_squared: integer;
+    begin
+       if rising_edge(clk50MHz) then
+           if collision_detected = '0' then
+                Q(0) <= '0';
+                Q(1) <= '1';
+                white_x <= new_white_x;
+                white_y <= new_white_y;
+                ball_2x <= new_ball2_x;
+                ball_2y <= new_ball2_y;
+--            else
+--                ball_2vx <= ball_2_new_vx;
+--                ball_2vy <= ball_2_new_vy;
             end if;
-        end process collision_detection_proc;
+    
+            -- Calculate vector differences
+            dx := new_white_x - ball_2x;
+            dy := new_white_y - ball_2y;
+            distance_squared := dx*dx + dy*dy;
+    
+            -- Check for collision and whether it has been processed
+            if distance_squared <= (2 * BALL_RADIUS) ** 2 and collision_detected = '0' then
+                -- Balls are colliding and collision has not been processed
+                collision_detected <= '1'; -- Set collision detected flag
+                Q(0) <= '1';
+                Q(1) <= '0';
+
+                ball_2vx <= white_vx * 2;
+                ball_2vy <= white_vy * 2;
+                -- white_vx <= white_vx - 1; 
+                -- white_vy <= white_vy - 1;
+                
+
+            elsif distance_squared > (2 * BALL_RADIUS) ** 2 then
+                -- No collision or collision has ended
+                collision_detected <= '0'; -- Reset collision detected flag
+            end if;
+        end if;
+    end process collision_detection_proc;
     
     --- Horizontal Divider
     hcount_proc: process(clk50MHz)

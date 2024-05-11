@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date             : Sat May 11 12:04:23 2024
+| Date             : Sat May 11 17:50:02 2024
 | Host             : DESKTOP-J5VP46H running 64-bit major release  (build 9200)
 | Command          : report_power -file vga_driver_power_routed.rpt -pb vga_driver_power_summary_routed.pb -rpx vga_driver_power_routed.rpx
 | Design           : vga_driver
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+----------------------------------+
-| Total On-Chip Power (W)  | 12.161 (Junction temp exceeded!) |
+| Total On-Chip Power (W)  | 12.250 (Junction temp exceeded!) |
 | Design Power Budget (W)  | Unspecified*                     |
 | Power Budget Margin (W)  | NA                               |
-| Dynamic (W)              | 11.123                           |
+| Dynamic (W)              | 11.212                           |
 | Device Static (W)        | 1.038                            |
 | Effective TJA (C/W)      | 11.5                             |
 | Max Ambient (C)          | 0.0                              |
@@ -52,17 +52,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     2.475 |     2530 |       --- |             --- |
-|   LUT as Logic |     2.058 |     1469 |     53200 |            2.76 |
-|   CARRY4       |     0.379 |      390 |     13300 |            2.93 |
-|   Register     |     0.032 |      296 |    106400 |            0.28 |
+| Slice Logic    |     2.492 |     2697 |       --- |             --- |
+|   LUT as Logic |     2.075 |     1539 |     53200 |            2.89 |
+|   CARRY4       |     0.379 |      398 |     13300 |            2.99 |
+|   Register     |     0.032 |      390 |    106400 |            0.37 |
 |   BUFG         |     0.006 |        3 |        32 |            9.38 |
 |   Others       |     0.000 |        8 |       --- |             --- |
-| Signals        |     2.706 |     2395 |       --- |             --- |
+| Signals        |     2.777 |     2496 |       --- |             --- |
 | DSPs           |     5.930 |       18 |       220 |            8.18 |
 | I/O            |     0.012 |       26 |       200 |           13.00 |
 | Static Power   |     1.038 |          |           |                 |
-| Total          |    12.161 |          |           |                 |
+| Total          |    12.250 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,7 +72,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |    11.422 |      11.123 |      0.299 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |    11.511 |      11.212 |      0.299 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.100 |       0.000 |      0.100 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -146,9 +146,9 @@ Table of Contents
 +-----------------+-----------+
 | Name            | Power (W) |
 +-----------------+-----------+
-| vga_driver      |    11.123 |
-|   comp_clk10Hz  |     0.154 |
-|   comp_clk50MHz |     0.142 |
+| vga_driver      |    11.212 |
+|   comp_clk10Hz  |     0.151 |
+|   comp_clk50MHz |     0.141 |
 +-----------------+-----------+
 
 
