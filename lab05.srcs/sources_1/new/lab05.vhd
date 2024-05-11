@@ -130,7 +130,7 @@ begin
                     white_vy <= white_vy - 1;
                 elsif white_vy < 0 then
                     white_vy <= white_vy + 1;
-                end if;
+                end if;               
                 
             else
             --- if BTNU = '1' then
@@ -166,10 +166,10 @@ begin
     end process white_ball_movement_proc;
     
     --- Collision detection
-    collision_detection_proc: process(clk50MHz)
+    collision_detection_proc: process(clk10Hz)
         variable dx, dy, distance_squared: integer;
     begin
-       if rising_edge(clk50MHz) then
+       if rising_edge(clk10Hz) then
            if collision_detected = '0' then
                 Q(0) <= '0';
                 Q(1) <= '1';
@@ -194,15 +194,25 @@ begin
                 Q(0) <= '1';
                 Q(1) <= '0';
 
-                ball_2vx <= white_vx * 2;
-                ball_2vy <= white_vy * 2;
-                -- white_vx <= white_vx - 1; 
-                -- white_vy <= white_vy - 1;
-                
-
+                 ball_2vx <= white_vx * 2;
+                 ball_2vy <= white_vy * 2;
+--                 white_vx <= white_vx - 1; 
+--                 white_vy <= white_vy - 1;
             elsif distance_squared > (2 * BALL_RADIUS) ** 2 then
                 -- No collision or collision has ended
                 collision_detected <= '0'; -- Reset collision detected flag
+                       
+                if ball_2vx > 0 then
+                    ball_2vx <= ball_2vx - (move_pixels / 10); -- Adjust the divisor as needed
+                elsif ball_2vx < 0 then
+                    ball_2vx <= ball_2vx + (move_pixels / 10);
+                end if;
+    
+                if ball_2vy > 0 then
+                    ball_2vy <= ball_2vy - (move_pixels / 10);
+                elsif ball_2vy < 0 then
+                    ball_2vy <= ball_2vy + (move_pixels / 10);
+                end if;
             end if;
         end if;
     end process collision_detection_proc;
