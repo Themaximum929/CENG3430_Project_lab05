@@ -114,8 +114,8 @@ begin
             -- Update ball
             if BTNU = '0' then
                 -- Update position based on velocity
-                white_x <= white_x + white_vx;
-                white_y <= white_y + white_vy;
+                white_x <= white_x + updated_white_vx;
+                white_y <= white_y + updated_white_vy;
                 
                 -- Collision detection wtih wall
                 if (white_x < H_START + 100) then
@@ -129,13 +129,13 @@ begin
                 if (white_y < V_START + 60) then
                     Q(7) <= '1'; 
                     white_y <= V_START + BALL_RADIUS + 60;
-                    updated_white_vy := -white_vy;
+                    updated_white_vy := -updated_white_vy;
                 elsif (white_y > V_END - 100) then
                     white_y <= V_END - BALL_RADIUS - 100;
-                    updated_white_vy := -white_vy;
+                    updated_white_vy := -updated_white_vy;
                 end if;
                 
-                if (white_vx < 0) then
+                if (updated_white_vy < 0) then
                     Q(6) <= '1';
                     Q(5) <= '0';
                 else
@@ -148,15 +148,23 @@ begin
                 
                 -- Apply friction (deceleration)
                 if white_vx > 0 then
-                    updated_white_vx := white_vx - (move_pixels / 10);
+                    updated_white_vx := updated_white_vx - (move_pixels / 10);
                 elsif white_vx < 0 then
-                    updated_white_vx := white_vx + (move_pixels / 10);
+                    updated_white_vx := updated_white_vx + (move_pixels / 10);
                 end if;
                 if white_vy > 0 then
-                    updated_white_vy := white_vy - (move_pixels / 10);
+                    updated_white_vy := updated_white_vy - (move_pixels / 10);
                 elsif white_vy < 0 then
-                    updated_white_vy := white_vy + (move_pixels / 10);
-                end if;               
+                    updated_white_vy := updated_white_vy + (move_pixels / 10);
+                end if;   
+                
+                if (updated_white_vy < 0) then
+                    Q(4) <= '1';
+                    Q(3) <= '0';
+                else
+                    Q(4) <= '0';
+                    Q(3) <= '1';
+                end if;            
                 
             else
             --- if BTNU = '1' then
