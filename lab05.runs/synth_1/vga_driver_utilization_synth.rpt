@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Sun May 12 13:30:25 2024
+| Date         : Sun May 12 14:57:29 2024
 | Host         : DESKTOP-J5VP46H running 64-bit major release  (build 9200)
 | Command      : report_utilization -file vga_driver_utilization_synth.rpt -pb vga_driver_utilization_synth.pb
 | Design       : vga_driver
@@ -31,8 +31,8 @@ Table of Contents
 +-------------------------+------+-------+------------+-----------+-------+
 |        Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +-------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*             | 2033 |     0 |          0 |     53200 |  3.82 |
-|   LUT as Logic          | 2033 |     0 |          0 |     53200 |  3.82 |
+| Slice LUTs*             | 2196 |     0 |          0 |     53200 |  4.13 |
+|   LUT as Logic          | 2196 |     0 |          0 |     53200 |  4.13 |
 |   LUT as Memory         |    0 |     0 |          0 |     17400 |  0.00 |
 | Slice Registers         |  522 |     0 |          0 |    106400 |  0.49 |
 |   Register as Flip Flop |  522 |     0 |          0 |    106400 |  0.49 |
@@ -58,8 +58,8 @@ Warning! LUT value is adjusted to account for LUT combining.
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
-| 40    |          Yes |         Set |            - |
-| 482   |          Yes |       Reset |            - |
+| 51    |          Yes |         Set |            - |
+| 471   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -149,15 +149,15 @@ Warning! LUT value is adjusted to account for LUT combining.
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| LUT2     | 1277 |                 LUT |
-| CARRY4   |  486 |          CarryLogic |
-| FDRE     |  482 |        Flop & Latch |
-| LUT4     |  453 |                 LUT |
-| LUT1     |  396 |                 LUT |
-| LUT3     |  166 |                 LUT |
-| LUT6     |  142 |                 LUT |
-| LUT5     |   61 |                 LUT |
-| FDSE     |   40 |        Flop & Latch |
+| LUT2     | 1101 |                 LUT |
+| LUT4     |  519 |                 LUT |
+| CARRY4   |  502 |          CarryLogic |
+| FDRE     |  471 |        Flop & Latch |
+| LUT1     |  332 |                 LUT |
+| LUT6     |  327 |                 LUT |
+| LUT5     |  183 |                 LUT |
+| LUT3     |  168 |                 LUT |
+| FDSE     |   51 |        Flop & Latch |
 | OBUF     |   22 |                  IO |
 | DSP48E1  |   18 |    Block Arithmetic |
 | IBUF     |    4 |                  IO |
