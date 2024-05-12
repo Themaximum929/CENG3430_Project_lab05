@@ -134,14 +134,6 @@ begin
                     white_y <= V_END - BALL_RADIUS - 100;
                     updated_white_vy := -updated_white_vy;
                 end if;
-                
-                if (updated_white_vy < 0) then
-                    Q(6) <= '1';
-                    Q(5) <= '0';
-                else
-                    Q(6) <= '0';
-                    Q(5) <= '1';
-                end if;
                     
 --                updated_ball2_x := updated_ball2_x+ ball_2vx;
 --                updated_ball2_y := updated_ball2_y + ball_2vy;
@@ -156,47 +148,46 @@ begin
                     updated_white_vy := updated_white_vy - (move_pixels / 10);
                 elsif white_vy < 0 then
                     updated_white_vy := updated_white_vy + (move_pixels / 10);
-                end if;   
-                
-                if (updated_white_vy < 0) then
-                    Q(4) <= '1';
-                    Q(3) <= '0';
-                else
-                    Q(4) <= '0';
-                    Q(3) <= '1';
-                end if;            
+                end if;       
                 
             else
             --- if BTNU = '1' then
-            case direction is
-                when 0 =>  -- Right
-                    updated_white_vx := move_pixels;
-                    updated_white_vy := 0;
-                when 1 =>  -- Up-Right
-                    updated_white_vx := move_pixels;
-                    updated_white_vy := -move_pixels;
-                when 2 =>  -- Up
+                case direction is
+                    when 0 =>  -- Right
+                        updated_white_vx := move_pixels;
+                        updated_white_vy := 0;
+                    when 1 =>  -- Up-Right
+                        updated_white_vx := move_pixels;
+                        updated_white_vy := -move_pixels;
+                    when 2 =>  -- Up
+                        updated_white_vx := 0;
+                        updated_white_vy := -move_pixels;
+                    when 3 =>  -- Up-Left
+                        updated_white_vx := -move_pixels;
+                        updated_white_vy := -move_pixels;
+                    when 4 =>  -- Left
+                        updated_white_vx := -move_pixels;
+                        updated_white_vy := 0;
+                    when 5 =>  -- Down-Left
+                        updated_white_vx := -move_pixels;
+                        updated_white_vy := move_pixels;
+                    when 6 =>  -- Down
+                        updated_white_vx := 0;
+                        updated_white_vy := move_pixels;
+                    when 7 =>  -- Down-Right
+                        updated_white_vx := move_pixels;
+                        updated_white_vy := move_pixels;
+                    when others => null;
+                end case;
+                         
+            end if;        
+                 if (abs(updated_white_vx) < 2) and (abs(updated_white_vy) < 2) then
                     updated_white_vx := 0;
-                    updated_white_vy := -move_pixels;
-                when 3 =>  -- Up-Left
-                    updated_white_vx := -move_pixels;
-                    updated_white_vy := -move_pixels;
-                when 4 =>  -- Left
-                    updated_white_vx := -move_pixels;
                     updated_white_vy := 0;
-                when 5 =>  -- Down-Left
-                    updated_white_vx := -move_pixels;
-                    updated_white_vy := move_pixels;
-                when 6 =>  -- Down
-                    updated_white_vx := 0;
-                    updated_white_vy := move_pixels;
-                when 7 =>  -- Down-Right
-                    updated_white_vx := move_pixels;
-                    updated_white_vy := move_pixels;
-                when others => null;
-            end case;
-            
-            end if;
+                    Q(6) <= '1';
+                else
+                    Q(6) <= '0';
+                end if;   
         end if;
     end process white_ball_movement_proc;
     
