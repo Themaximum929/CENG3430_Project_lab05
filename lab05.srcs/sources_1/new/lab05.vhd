@@ -45,11 +45,6 @@ architecture vga_driver_arch of vga_driver is
     );
     end component;
     
-    --- Constants of the square
-    --- constant LENGTH: integer := 100;
-    --- signal H_TOP_LEFT: integer := (H_START + H_END)/2 - LENGTH/2;
-    --- signal V_TOP_LEFT: integer := (V_START + V_END)/2 - LENGTH/2;
-    
     --- Constants of the balls
     constant BALL_RADIUS: integer := 20;
     signal white_x: integer := 512;
@@ -59,13 +54,10 @@ architecture vga_driver_arch of vga_driver is
     
     signal ball_2x: integer := 712;
     signal ball_2y: integer := 300; 
-    signal ball_2vx: integer := 0;
-    signal ball_2vy: integer := 0;  --initial ball 2 pos, v 
+
+    constant move_pixels: integer := 50;
     
-    constant move_pixels: integer :=50;
-    
-    signal new_white_x, new_white_y: integer;
-    signal new_ball2_x, new_ball2_y: integer;
+    signal new_white_x, new_white_y: integer; -- For x y pos modification 
     
     signal collision_detected: std_logic := '0'; -- Latch collision state
     
@@ -73,13 +65,10 @@ architecture vga_driver_arch of vga_driver is
     
     signal direction: integer range 0 to 7 := 0; --- White ball direction
     
-    signal update_velocities: std_logic;
-    signal ball_2x_next, ball_2y_next: integer;
-    
-    shared variable updated_white_vx, updated_white_vy : integer := 0;
     shared variable updated_ball2_x: integer := 712; 
-    shared variable updated_ball2_y: integer := 300; 
-    shared variable updated_ball2_vx, updated_ball2_vy : integer := 0;
+    shared variable updated_ball2_y: integer := 300; -- For updating ball pos
+    shared variable updated_white_vx, updated_white_vy : integer := 0;
+    shared variable updated_ball2_vx, updated_ball2_vy : integer := 0; -- For velocity modification inside process
     
 begin
     --- Generate 50MHz clock
@@ -94,8 +83,6 @@ begin
     begin
         new_white_x <= white_x;
         new_white_y <= white_y;
---        new_ball2_x <= ball_2x;
---        new_ball2_y <= ball_2y;
             -- Prevent multi-rotation on one click
             if rising_edge(clk10Hz) then
                 if BTNL = '1' and btnl_pressed = '0' then
@@ -133,10 +120,7 @@ begin
                 elsif (white_y > V_END - 100) then
                     white_y <= V_END - BALL_RADIUS - 100;
                     updated_white_vy := -updated_white_vy;
-                end if;
-                    
---                updated_ball2_x := updated_ball2_x+ ball_2vx;
---                updated_ball2_y := updated_ball2_y + ball_2vy;
+                end if;               
                 
                 -- Apply friction (deceleration)
                 if abs(updated_white_vx) < 2 then
@@ -288,8 +272,6 @@ end process collision_detection_proc;
         if rising_edge(clk10Hz) then
             ball_2x <= updated_ball2_x;
             ball_2y <= updated_ball2_y;
-            ball_2vx <= updated_ball2_vx;
-            ball_2vy <= updated_ball2_vy;
         end if;
     end process update_ball_velocity_proc;
     
