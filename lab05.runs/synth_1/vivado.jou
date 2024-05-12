@@ -3,8 +3,8 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Sat May 11 18:41:32 2024
-# Process ID: 31816
+# Start of session at: Sun May 12 13:29:54 2024
+# Process ID: 37964
 # Current directory: C:/Users/Mashiro/lab05/lab05.runs/synth_1
 # Command line: vivado.exe -log vga_driver.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source vga_driver.tcl
 # Log file: C:/Users/Mashiro/lab05/lab05.runs/synth_1/vga_driver.vds

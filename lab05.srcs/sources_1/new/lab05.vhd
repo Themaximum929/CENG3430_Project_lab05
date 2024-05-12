@@ -79,6 +79,8 @@ architecture vga_driver_arch of vga_driver is
     -- Signals for collision handling
     -- signal ball_2_segment: integer range 0 to 7; -- Segment of the blue ball that was hit
     signal ball_2_new_vx, ball_2_new_vy: integer; -- New velocity for the blue ball after collision
+    
+    shared variable updated_white_vx, updated_white_vy : integer := 0;
    
     
 begin
@@ -99,66 +101,82 @@ begin
             -- Prevent multi-rotation on one click
             if rising_edge(clk10Hz) then
                 if BTNL = '1' and btnl_pressed = '0' then
-                direction <= (direction + 1) mod 8;
-                btnl_pressed := '1';
-            elsif BTNL = '0' then
-                btnl_pressed := '0';
-            end if;
+                    direction <= (direction + 1) mod 8;
+                    btnl_pressed := '1';
+                elsif BTNL = '0' then
+                    btnl_pressed := '0';
+                end if;
     
-            if BTNR = '1' and btnr_pressed = '0' then
-                direction <= (direction - 1) mod 8;
-                btnr_pressed := '1';
-            elsif BTNR = '0' then
-                btnr_pressed := '0';
-            end if;
+                if BTNR = '1' and btnr_pressed = '0' then
+                    direction <= (direction - 1) mod 8;
+                    btnr_pressed := '1';
+                elsif BTNR = '0' then
+                    btnr_pressed := '0';
+                end if;
             -- Update ball
             if BTNU = '0' then
                 -- Update position based on velocity
                 white_x <= white_x + white_vx;
                 white_y <= white_y + white_vy;
                 
+                -- Collision detection wtih wall
+                if (white_x < H_START + 100) then
+                    white_x <= H_START + 100 + BALL_RADIUS;
+                    updated_white_vx := -updated_white_vx;
+                elsif (white_x > H_END - 100) then
+                    white_x <= H_END - 100 -  BALL_RADIUS;
+                    updated_white_vx := -updated_white_vx;
+                end if;
+                if (white_y < V_START + 60) then
+                    white_y <= V_START + BALL_RADIUS + 60;
+                    updated_white_vy := -white_vy;
+                elsif (white_y > V_END - 100) then
+                    white_y <= V_END - BALL_RADIUS - 100;
+                    updated_white_vy := -white_vy;
+                end if;
+                                
                 ball_2x <= ball_2x + ball_2vx;
                 ball_2y <= ball_2y + ball_2vy;
                 
                 -- Apply friction (deceleration)
                 if white_vx > 0 then
-                    white_vx <= white_vx - 1;
+                    updated_white_vx := white_vx - 1;
                 elsif white_vx < 0 then
-                    white_vx <= white_vx + 1;
+                    updated_white_vx := white_vx + 1;
                 end if;
                 if white_vy > 0 then
-                    white_vy <= white_vy - 1;
+                    updated_white_vy := white_vy - 1;
                 elsif white_vy < 0 then
-                    white_vy <= white_vy + 1;
+                    updated_white_vy := white_vy + 1;
                 end if;               
                 
             else
             --- if BTNU = '1' then
             case direction is
                 when 0 =>  -- Right
-                    white_vx <= move_pixels;
-                    white_vy <= 0;
+                    updated_white_vx := move_pixels;
+                    updated_white_vy := 0;
                 when 1 =>  -- Up-Right
-                    white_vx <= move_pixels;
-                    white_vy <= -move_pixels;
+                    updated_white_vx := move_pixels;
+                    updated_white_vy := -move_pixels;
                 when 2 =>  -- Up
-                    white_vx <= 0;
-                    white_vy <= -move_pixels;
+                    updated_white_vx := 0;
+                    updated_white_vy := -move_pixels;
                 when 3 =>  -- Up-Left
-                    white_vx <= -move_pixels;
-                    white_vy <= -move_pixels;
+                    updated_white_vx := -move_pixels;
+                    updated_white_vy := -move_pixels;
                 when 4 =>  -- Left
-                    white_vx <= -move_pixels;
-                    white_vy <= 0;
+                    updated_white_vx := -move_pixels;
+                    updated_white_vy := 0;
                 when 5 =>  -- Down-Left
-                    white_vx <= -move_pixels;
-                    white_vy <= move_pixels;
+                    updated_white_vx := -move_pixels;
+                    updated_white_vy := move_pixels;
                 when 6 =>  -- Down
-                    white_vx <= 0;
-                    white_vy <= move_pixels;
+                    updated_white_vx := 0;
+                    updated_white_vy := move_pixels;
                 when 7 =>  -- Down-Right
-                    white_vx <= move_pixels;
-                    white_vy <= move_pixels;
+                    updated_white_vx := move_pixels;
+                    updated_white_vy := move_pixels;
                 when others => null;
             end case;
             end if;
@@ -166,7 +184,7 @@ begin
     end process white_ball_movement_proc;
     
     --- Collision detection
-    collision_detection_proc: process(clk10Hz)
+    collision_detection_proc: process(clk50MHz)
         variable dx, dy, distance_squared: integer;
     begin
        if rising_edge(clk10Hz) then
@@ -196,11 +214,26 @@ begin
 
                  ball_2vx <= white_vx * 2;
                  ball_2vy <= white_vy * 2;
---                 white_vx <= white_vx - 1; 
---                 white_vy <= white_vy - 1;
+--                 updated_white_vx := -white_vx; 
+--                 updated_white_vy := -white_vy;
             elsif distance_squared > (2 * BALL_RADIUS) ** 2 then
                 -- No collision or collision has ended
                 collision_detected <= '0'; -- Reset collision detected flag
+                
+--                if (ball_2x < H_START + 100) then
+--                    ball_2x <= H_START + 100 + BALL_RADIUS;
+--                    ball_2vx <= -ball_2vx;
+--                elsif (ball_2x > H_END - 100) then
+--                    ball_2x <= H_END - 100 -  BALL_RADIUS;
+--                    ball_2vx <= -ball_2vx;
+--                end if;
+--                if (ball_2y < V_START + 60) then
+--                    ball_2y <= V_START + BALL_RADIUS + 60;
+--                    ball_2vy <= -ball_2vy;
+--                elsif (ball_2y > V_END - 100) then
+--                    ball_2y <= V_END - BALL_RADIUS - 100;
+--                    ball_2vy <= -ball_2vy;
+--                end if;
                        
                 if ball_2vx > 0 then
                     ball_2vx <= ball_2vx - (move_pixels / 10); -- Adjust the divisor as needed
@@ -216,6 +249,14 @@ begin
             end if;
         end if;
     end process collision_detection_proc;
+    
+    update_white_velocity_proc: process (clk10Hz)
+    begin
+        if rising_edge(clk10Hz) then
+            white_vx <= updated_white_vx;
+            white_vy <= updated_white_vy;
+        end if;
+    end process update_white_velocity_proc;
     
     --- Horizontal Divider
     hcount_proc: process(clk50MHz)

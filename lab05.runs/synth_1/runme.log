@@ -26,42 +26,45 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 8 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 28376
+INFO: [Synth 8-7075] Helper process launched with PID 38648
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1368.715 ; gain = 440.008
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1369.977 ; gain = 441.223
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'vga_driver' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:17]
+WARNING: [Synth 8-613] shared variable will be implemented as local to architecture [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:83]
+WARNING: [Synth 8-613] shared variable will be implemented as local to architecture [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:83]
 	Parameter N bound to: 1 - type: integer 
-INFO: [Synth 8-3491] module 'clock_divider' declared at 'C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/clock_divider.vhd:5' bound to instance 'comp_clk50MHz' of component 'clock_divider' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:86]
+INFO: [Synth 8-3491] module 'clock_divider' declared at 'C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/clock_divider.vhd:5' bound to instance 'comp_clk50MHz' of component 'clock_divider' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:88]
 INFO: [Synth 8-638] synthesizing module 'clock_divider' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/clock_divider.vhd:10]
 	Parameter N bound to: 1 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'clock_divider' (0#1) [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/clock_divider.vhd:10]
 	Parameter N bound to: 5000000 - type: integer 
-INFO: [Synth 8-3491] module 'clock_divider' declared at 'C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/clock_divider.vhd:5' bound to instance 'comp_clk10Hz' of component 'clock_divider' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:88]
+INFO: [Synth 8-3491] module 'clock_divider' declared at 'C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/clock_divider.vhd:5' bound to instance 'comp_clk10Hz' of component 'clock_divider' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:90]
 INFO: [Synth 8-638] synthesizing module 'clock_divider__parameterized1' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/clock_divider.vhd:10]
 	Parameter N bound to: 5000000 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'clock_divider__parameterized1' (0#1) [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/clock_divider.vhd:10]
-INFO: [Synth 8-226] default block is never used [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:137]
-WARNING: [Synth 8-614] signal 'white_x' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:91]
-WARNING: [Synth 8-614] signal 'white_y' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:91]
-WARNING: [Synth 8-614] signal 'ball_2x' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:91]
-WARNING: [Synth 8-614] signal 'ball_2y' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:91]
-WARNING: [Synth 8-614] signal 'direction' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:268]
+INFO: [Synth 8-226] default block is never used [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:155]
+WARNING: [Synth 8-614] signal 'white_x' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:93]
+WARNING: [Synth 8-614] signal 'white_y' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:93]
+WARNING: [Synth 8-614] signal 'ball_2x' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:93]
+WARNING: [Synth 8-614] signal 'ball_2y' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:93]
+WARNING: [Synth 8-614] signal 'clk10Hz' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:187]
+WARNING: [Synth 8-614] signal 'direction' is read in the process but is not in the sensitivity list [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:309]
 INFO: [Synth 8-256] done synthesizing module 'vga_driver' (0#1) [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:17]
 WARNING: [Synth 8-7129] Port BTND in module vga_driver is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1480.004 ; gain = 551.297
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1482.715 ; gain = 553.961
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1480.004 ; gain = 551.297
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1482.715 ; gain = 553.961
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1480.004 ; gain = 551.297
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1482.715 ; gain = 553.961
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1480.004 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1482.715 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -74,58 +77,64 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/vga_driver_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1520.969 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1587.004 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 The system cannot find the path specified.
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1520.969 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1587.004 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1520.969 ; gain = 592.262
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1587.004 ; gain = 658.250
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1520.969 ; gain = 592.262
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1587.004 ; gain = 658.250
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1520.969 ; gain = 592.262
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1587.004 ; gain = 658.250
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1520.969 ; gain = 592.262
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1587.004 ; gain = 658.250
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   32 Bit       Adders := 17    
+	   2 Input   32 Bit       Adders := 23    
 	   3 Input   32 Bit       Adders := 8     
 	   4 Input   32 Bit       Adders := 4     
 	   2 Input   31 Bit       Adders := 6     
 	   2 Input    3 Bit       Adders := 2     
 +---Registers : 
-	               32 Bit    Registers := 6     
+	               32 Bit    Registers := 10    
 	                8 Bit    Registers := 1     
 	                3 Bit    Registers := 1     
 	                1 Bit    Registers := 5     
 +---Multipliers : 
 	              32x32  Multipliers := 6     
 +---Muxes : 
-	   2 Input   32 Bit        Muxes := 3     
+	   2 Input   32 Bit        Muxes := 13    
+	   4 Input   32 Bit        Muxes := 2     
 	   2 Input   31 Bit        Muxes := 6     
+	   2 Input   13 Bit        Muxes := 1     
+	   2 Input   12 Bit        Muxes := 2     
+	   2 Input   11 Bit        Muxes := 1     
+	   2 Input   10 Bit        Muxes := 2     
 	   8 Input    5 Bit        Muxes := 2     
 	   2 Input    4 Bit        Muxes := 6     
 	   2 Input    3 Bit        Muxes := 1     
 	   2 Input    2 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 9     
+	   2 Input    1 Bit        Muxes := 11    
+	   4 Input    1 Bit        Muxes := 2     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -198,7 +207,7 @@ DSP Report: operator Q3 is absorbed into DSP Q3.
 DSP Report: operator Q3 is absorbed into DSP Q3.
 WARNING: [Synth 8-7129] Port BTND in module vga_driver is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1520.969 ; gain = 592.262
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1587.004 ; gain = 658.250
 ---------------------------------------------------------------------------------
  Sort Area is  Q3_b : 0 0 : 2701 4456 : Used 1 time 0
  Sort Area is  Q3_b : 0 1 : 1755 4456 : Used 1 time 0
@@ -254,19 +263,19 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1520.969 ; gain = 592.262
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1587.004 ; gain = 658.250
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1520.969 ; gain = 592.262
+Finished Timing Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1587.004 ; gain = 658.250
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1543.441 ; gain = 614.734
+Finished Technology Mapping : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1587.004 ; gain = 658.250
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -284,37 +293,145 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1545.156 ; gain = 616.449
+Finished IO Insertion : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1587.004 ; gain = 658.250
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1545.156 ; gain = 616.449
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1587.004 ; gain = 658.250
 ---------------------------------------------------------------------------------
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[31] with 1st driver pin 'ball_2y_reg[31]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[31] with 2nd driver pin 'ball_2y_reg[31]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[30] with 1st driver pin 'ball_2y_reg[30]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[30] with 2nd driver pin 'ball_2y_reg[30]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[29] with 1st driver pin 'ball_2y_reg[29]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[29] with 2nd driver pin 'ball_2y_reg[29]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[28] with 1st driver pin 'ball_2y_reg[28]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[28] with 2nd driver pin 'ball_2y_reg[28]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[27] with 1st driver pin 'ball_2y_reg[27]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[27] with 2nd driver pin 'ball_2y_reg[27]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[26] with 1st driver pin 'ball_2y_reg[26]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[26] with 2nd driver pin 'ball_2y_reg[26]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[25] with 1st driver pin 'ball_2y_reg[25]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[25] with 2nd driver pin 'ball_2y_reg[25]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[24] with 1st driver pin 'ball_2y_reg[24]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[24] with 2nd driver pin 'ball_2y_reg[24]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[23] with 1st driver pin 'ball_2y_reg[23]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[23] with 2nd driver pin 'ball_2y_reg[23]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[22] with 1st driver pin 'ball_2y_reg[22]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[22] with 2nd driver pin 'ball_2y_reg[22]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[21] with 1st driver pin 'ball_2y_reg[21]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[21] with 2nd driver pin 'ball_2y_reg[21]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[20] with 1st driver pin 'ball_2y_reg[20]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[20] with 2nd driver pin 'ball_2y_reg[20]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[19] with 1st driver pin 'ball_2y_reg[19]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[19] with 2nd driver pin 'ball_2y_reg[19]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[18] with 1st driver pin 'ball_2y_reg[18]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[18] with 2nd driver pin 'ball_2y_reg[18]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[17] with 1st driver pin 'ball_2y_reg[17]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[17] with 2nd driver pin 'ball_2y_reg[17]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[16] with 1st driver pin 'ball_2y_reg[16]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[16] with 2nd driver pin 'ball_2y_reg[16]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[15] with 1st driver pin 'ball_2y_reg[15]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[15] with 2nd driver pin 'ball_2y_reg[15]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[14] with 1st driver pin 'ball_2y_reg[14]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[14] with 2nd driver pin 'ball_2y_reg[14]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[13] with 1st driver pin 'ball_2y_reg[13]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[13] with 2nd driver pin 'ball_2y_reg[13]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[12] with 1st driver pin 'ball_2y_reg[12]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[12] with 2nd driver pin 'ball_2y_reg[12]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[11] with 1st driver pin 'ball_2y_reg[11]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[11] with 2nd driver pin 'ball_2y_reg[11]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[10] with 1st driver pin 'ball_2y_reg[10]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[10] with 2nd driver pin 'ball_2y_reg[10]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[9] with 1st driver pin 'ball_2y_reg[9]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[9] with 2nd driver pin 'ball_2y_reg[9]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[8] with 1st driver pin 'ball_2y_reg[8]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[8] with 2nd driver pin 'ball_2y_reg[8]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[7] with 1st driver pin 'ball_2y_reg[7]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[7] with 2nd driver pin 'ball_2y_reg[7]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[6] with 1st driver pin 'ball_2y_reg[6]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[6] with 2nd driver pin 'ball_2y_reg[6]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[5] with 1st driver pin 'ball_2y_reg[5]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[5] with 2nd driver pin 'ball_2y_reg[5]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[4] with 1st driver pin 'ball_2y_reg[4]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[4] with 2nd driver pin 'ball_2y_reg[4]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[3] with 1st driver pin 'ball_2y_reg[3]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[3] with 2nd driver pin 'ball_2y_reg[3]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[2] with 1st driver pin 'ball_2y_reg[2]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[2] with 2nd driver pin 'ball_2y_reg[2]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[1] with 1st driver pin 'ball_2y_reg[1]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[1] with 2nd driver pin 'ball_2y_reg[1]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[0] with 1st driver pin 'ball_2y_reg[0]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:197]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2y[0] with 2nd driver pin 'ball_2y_reg[0]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:100]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[31] with 1st driver pin 'ball_2x_reg[31]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[31] with 2nd driver pin 'ball_2x_reg[31]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[30] with 1st driver pin 'ball_2x_reg[30]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[30] with 2nd driver pin 'ball_2x_reg[30]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[29] with 1st driver pin 'ball_2x_reg[29]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[29] with 2nd driver pin 'ball_2x_reg[29]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[28] with 1st driver pin 'ball_2x_reg[28]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[28] with 2nd driver pin 'ball_2x_reg[28]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[27] with 1st driver pin 'ball_2x_reg[27]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[27] with 2nd driver pin 'ball_2x_reg[27]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[26] with 1st driver pin 'ball_2x_reg[26]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[26] with 2nd driver pin 'ball_2x_reg[26]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[25] with 1st driver pin 'ball_2x_reg[25]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[25] with 2nd driver pin 'ball_2x_reg[25]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[24] with 1st driver pin 'ball_2x_reg[24]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[24] with 2nd driver pin 'ball_2x_reg[24]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[23] with 1st driver pin 'ball_2x_reg[23]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[23] with 2nd driver pin 'ball_2x_reg[23]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[22] with 1st driver pin 'ball_2x_reg[22]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[22] with 2nd driver pin 'ball_2x_reg[22]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[21] with 1st driver pin 'ball_2x_reg[21]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[21] with 2nd driver pin 'ball_2x_reg[21]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[20] with 1st driver pin 'ball_2x_reg[20]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[20] with 2nd driver pin 'ball_2x_reg[20]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[19] with 1st driver pin 'ball_2x_reg[19]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[19] with 2nd driver pin 'ball_2x_reg[19]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[18] with 1st driver pin 'ball_2x_reg[18]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[18] with 2nd driver pin 'ball_2x_reg[18]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[17] with 1st driver pin 'ball_2x_reg[17]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[17] with 2nd driver pin 'ball_2x_reg[17]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[16] with 1st driver pin 'ball_2x_reg[16]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[16] with 2nd driver pin 'ball_2x_reg[16]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[15] with 1st driver pin 'ball_2x_reg[15]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[15] with 2nd driver pin 'ball_2x_reg[15]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[14] with 1st driver pin 'ball_2x_reg[14]/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:196]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin ball_2x[14] with 2nd driver pin 'ball_2x_reg[14]__0/Q' [C:/Users/Mashiro/lab05/lab05.srcs/sources_1/new/lab05.vhd:99]
+INFO: [Common 17-14] Message 'Synth 8-6859' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|       64|Failed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1545.156 ; gain = 616.449
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1587.004 ; gain = 658.250
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1545.156 ; gain = 616.449
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1587.004 ; gain = 658.250
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1545.156 ; gain = 616.449
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1587.004 ; gain = 658.250
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1545.156 ; gain = 616.449
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1587.004 ; gain = 658.250
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -356,43 +473,44 @@ Report Cell Usage:
 |      |Cell    |Count |
 +------+--------+------+
 |1     |BUFG    |     3|
-|2     |CARRY4  |   422|
+|2     |CARRY4  |   486|
 |3     |DSP48E1 |    18|
-|4     |LUT1    |   262|
-|5     |LUT2    |   988|
-|6     |LUT3    |   193|
-|7     |LUT4    |   428|
-|8     |LUT5    |    89|
-|9     |LUT6    |   132|
-|10    |FDRE    |   393|
-|11    |FDSE    |     1|
+|4     |LUT1    |   396|
+|5     |LUT2    |  1277|
+|6     |LUT3    |   166|
+|7     |LUT4    |   453|
+|8     |LUT5    |    61|
+|9     |LUT6    |   142|
+|10    |FDRE    |   482|
+|11    |FDSE    |    40|
 |12    |IBUF    |     4|
 |13    |OBUF    |    22|
 +------+--------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1545.156 ; gain = 616.449
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1587.004 ; gain = 658.250
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 2 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:22 . Memory (MB): peak = 1545.156 ; gain = 575.484
-Synthesis Optimization Complete : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 1545.156 ; gain = 616.449
+Synthesis finished with 0 errors, 128 critical warnings and 2 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:21 . Memory (MB): peak = 1587.004 ; gain = 553.961
+Synthesis Optimization Complete : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1587.004 ; gain = 658.250
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.018 . Memory (MB): peak = 1557.211 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 440 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 1587.004 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 504 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 WARNING: [Netlist 29-101] Netlist 'vga_driver' is not ideal for floorplanning, since the cellview 'vga_driver' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1561.344 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1587.004 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 The system cannot find the path specified.
-Synth Design complete | Checksum: f6334942
+Synth Design complete | Checksum: 610cb338
 INFO: [Common 17-83] Releasing license: Synthesis
-30 Infos, 11 Warnings, 0 Critical Warnings and 0 Errors encountered.
+31 Infos, 14 Warnings, 100 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1561.344 ; gain = 1052.570
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1561.344 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1587.004 ; gain = 1078.008
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1587.004 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/Mashiro/lab05/lab05.runs/synth_1/vga_driver.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file vga_driver_utilization_synth.rpt -pb vga_driver_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sat May 11 18:42:03 2024...
+INFO: [Common 17-206] Exiting Vivado at Sun May 12 13:30:25 2024...
