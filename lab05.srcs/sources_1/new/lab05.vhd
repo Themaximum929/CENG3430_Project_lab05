@@ -71,16 +71,13 @@ architecture vga_driver_arch of vga_driver is
     shared variable updated_ball2_vx, updated_ball2_vy : integer := 0; -- For velocity modification inside process
     
     -- For multi-ball declaration
-    type ball_array_t is array (2 to 2) of integer;
-    signal updated_ball_x : ball_array_t := (2 => 712);
-    signal updated_ball_y : ball_array_t := (2 => 300);
-    signal updated_ball_vx: ball_array_t := (others => 0);
-    signal updated_ball_vy: ball_array_t := (others => 0);
-    
-    
-    
-    
-    
+    type ball_array_t is array (2 to 3) of integer;
+    signal ball_x : ball_array_t := (2 => 712, 3 => 752);
+    signal ball_y : ball_array_t := (2 => 712, 3 => 752);
+    shared variable updated_ball_x : ball_array_t := (2 => 712, 3 => 752);
+    shared variable updated_ball_y : ball_array_t := (2 => 300, 3 => 300);
+    shared variable updated_ball_vx: ball_array_t := (others => 0);
+    shared variable updated_ball_vy: ball_array_t := (others => 0);
     
 begin
     --- Generate 50MHz clock
@@ -186,13 +183,6 @@ begin
                 end case;
                          
             end if;        
-                 if (abs(updated_white_vx) < 2) and (abs(updated_white_vy) < 2) then
-                    updated_white_vx := 0;
-                    updated_white_vy := 0;
-                    Q(6) <= '1';
-                else
-                    Q(6) <= '0';
-                end if;   
         end if;
     end process white_ball_movement_proc;
     
@@ -208,66 +198,84 @@ begin
             white_y <= new_white_y;
         end if;
 
-        -- Calculate vector differences
-        dx := new_white_x - ball_2x;
-        dy := new_white_y - ball_2y;
-        distance_squared := dx*dx + dy*dy;
+        -- Collision between white ball and color balls
+        for i in updated_ball_x'range loop
+            dx := new_white_x - updated_ball_x(i);
+            dy := new_white_y - updated_ball_y(i);
+            distance_squared := dx*dx + dy*dy;
+            
+            if distance_squared <= (2 * BALL_RADIUS) ** 2 and collision_detected = '0' then
+                collision_detected <= '1'; -- Set collision detected flag
+                
+                updated_ball_vx(i) := white_vx * 2;
+                updated_ball_vy(i) := white_vy * 2;
+            elsif distance_squared > (2 * BALL_RADIUS) ** 2 then
+                collision_detected <= '0'; 
+            end if;
+        end loop;
+        
+        -- Collision between ball and ball
+        for i in updated_ball_x'range loop
+            for j in i+1 to 3 loop
+                dx := new_white_x - updated_ball_x(i);
+                dy := new_white_y - updated_ball_y(i);
+                distance_squared := dx*dx + dy*dy;
+                
+                if distance_squared <= (2 * BALL_RADIUS) ** 2 and collision_detected = '0' then
+                    collision_detected <= '1'; -- Set collision detected flag
+                    
+                    updated_ball_vx(j) := updated_ball_vx(i) * 2;
+                    updated_ball_vy(j) := updated_ball_vy(i) * 2;
+                elsif distance_squared > (2 * BALL_RADIUS) ** 2 then
+                    collision_detected <= '0'; 
+                end if;
+            end loop;
+        end loop;        
+        
+        -- Update ball position and velocity
+        for i in updated_ball_x'range loop
+            updated_ball_x(i) := updated_ball_x(i) + updated_ball_vx(i);
+            updated_ball_y(i) := updated_ball_y(i) + updated_ball_vy(i);
 
-        -- Check for collision and whether it has been processed
-        if distance_squared <= (2 * BALL_RADIUS) ** 2 and collision_detected = '0' then
-            -- Balls are colliding and collision has not been processed
-            collision_detected <= '1'; -- Set collision detected flag
-            Q(0) <= '1';
-            Q(1) <= '0';
 
-            updated_ball2_vx := white_vx * 2;
-            updated_ball2_vy := white_vy * 2;
-        elsif distance_squared > (2 * BALL_RADIUS) ** 2 then
-            -- No collision or collision has ended
-            collision_detected <= '0'; -- Reset collision detected flag
+        if (updated_ball_x(i) < H_START + 100) then
+            updated_ball_x(i) := H_START + 100 + BALL_RADIUS;
+            updated_ball_vx(i) := -updated_ball_vx(i);
+        elsif (updated_ball_x(i) > H_END - 100) then
+            updated_ball_x(i) := H_END - 100 - BALL_RADIUS;
+            updated_ball_vx(i) := -updated_ball_vx(i);
         end if;
 
-        -- Update blue ball position and velocity
-        updated_ball2_x := updated_ball2_x + updated_ball2_vx;
-        updated_ball2_y := updated_ball2_y + updated_ball2_vy;
-
-        -- Wall detection for blue ball
-        if (updated_ball2_x < H_START + 100) then
-            updated_ball2_x := H_START + 100 + BALL_RADIUS;
-            updated_ball2_vx := -updated_ball2_vx;
-        elsif (updated_ball2_x > H_END - 100) then
-            updated_ball2_x := H_END - 100 - BALL_RADIUS;
-            updated_ball2_vx := -updated_ball2_vx;
-        end if;
-
-        if (updated_ball2_y < V_START + 60) then
-            updated_ball2_y := V_START + BALL_RADIUS + 60;
-            updated_ball2_vy := -updated_ball2_vy;
-        elsif (updated_ball2_y > V_END - 100) then
-            updated_ball2_y := V_END - BALL_RADIUS - 100;
-            updated_ball2_vy := -updated_ball2_vy;
+        if (updated_ball_y(i) < V_START + 60) then
+            updated_ball_y(i) := V_START + BALL_RADIUS + 60;
+            updated_ball_vy(i) := -updated_ball_vy(i);
+        elsif (updated_ball_y(i) > V_END - 100) then
+            updated_ball_y(i) := V_END - BALL_RADIUS - 100;
+            updated_ball_vy(i) := -updated_ball_vy(i);
         end if;
 
         -- Apply friction (deceleration) for blue ball
-        if abs (updated_ball2_vx) < 5 then
-            updated_ball2_vx := 0;
+        if abs (updated_ball_vx(i)) < 5 then
+            updated_ball_vx(i) := 0;
         else
-            if updated_ball2_vx > 0 then
-                updated_ball2_vx := updated_ball2_vx - (move_pixels / 10);
-            elsif updated_ball2_vx < 0 then
-                updated_ball2_vx := updated_ball2_vx + (move_pixels / 10);
+            if updated_ball_vx(i) > 0 then
+                updated_ball_vx(i) := updated_ball_vx(i) - (move_pixels / 10);
+            elsif updated_ball_vx(i) < 0 then
+                updated_ball_vx(i) := updated_ball_vx(i) + (move_pixels / 10);
             end if;
         end if;
 
-        if abs (updated_ball2_vy) < 5 then
-            updated_ball2_vy := 0;
+        if abs (updated_ball_vy(i)) < 5 then
+            updated_ball_vy(i) := 0;
         else
-            if updated_ball2_vy > 0 then
-                updated_ball2_vy := updated_ball2_vy - (move_pixels / 10);
-            elsif updated_ball2_vy < 0 then
-                updated_ball2_vy := updated_ball2_vy + (move_pixels / 10);
+            if updated_ball_vy(i) > 0 then
+                updated_ball_vy(i) := updated_ball_vy(i) - (move_pixels / 10);
+            elsif updated_ball_vy(i) < 0 then
+                updated_ball_vy(i) := updated_ball_vy(i) + (move_pixels / 10);
             end if;
         end if;
+        
+        end loop;
     end if;
 end process collision_detection_proc;
     
@@ -282,8 +290,11 @@ end process collision_detection_proc;
     update_ball_velocity_proc: process (clk10Hz)
     begin
         if rising_edge(clk10Hz) then
-            ball_2x <= updated_ball2_x;
-            ball_2y <= updated_ball2_y;
+            for i in updated_ball_x'range loop
+                ball_x(i) <= updated_ball_x(i);
+                ball_y(i) <= updated_ball_y(i);
+            end loop;
+
         end if;
     end process update_ball_velocity_proc;
     
@@ -350,73 +361,83 @@ begin
             red <= "1111";
             green <= "1111";
             blue <= "1111";
-        elsif ((hcount - ball_2x)**2 + (vcount - ball_2y)**2 <= BALL_RADIUS**2) then
-            -- Draw second ball in blue
-            red <= "0000";
-            green <= "0000";
-            blue <= "1111";
-        
-        else
-            -- Draw the beam based on the direction
-            case direction is
-                when 0 =>  -- Right
-                    if hcount > white_x and hcount <= white_x + BEAM_LENGTH and abs(vcount - white_y) <= 2 then
-                        red <= "1111";
-                        green <= "0000";
-                        blue <= "0000";
-                    end if;
-                when 7 =>  -- Down-Right
-                    if hcount > white_x and vcount > white_y and
-                       abs((hcount - white_x) - (vcount - white_y)) <= 2 and
-                       (hcount - white_x) <= BEAM_LENGTH and (vcount - white_y) <= BEAM_LENGTH then
-                        red <= "1111";
-                        green <= "0000";
-                        blue <= "0000";
-                    end if;
-                when 6 =>  -- Down
-                    if vcount > white_y and vcount <= white_y + BEAM_LENGTH and abs(hcount - white_x) <= 2 then
-                        red <= "1111";
-                        green <= "0000";
-                        blue <= "0000";
-                    end if;
-                when 5 =>  -- Down-Left
-                    if hcount < white_x and vcount > white_y and
-                       abs((white_x - hcount) - (vcount - white_y)) <= 2 and
-                       (white_x - hcount) <= BEAM_LENGTH and (vcount - white_y) <= BEAM_LENGTH then
-                        red <= "1111";
-                        green <= "0000";
-                        blue <= "0000";
-                    end if;
-                when 4 =>  -- Left
-                    if hcount < white_x and hcount >= white_x - BEAM_LENGTH and abs(vcount - white_y) <= 2 then
-                        red <= "1111";
-                        green <= "0000";
-                        blue <= "0000";
-                    end if;
-                when 3 =>  -- Up-Left
-                    if hcount < white_x and vcount < white_y and
-                       abs((white_x - hcount) - (white_y - vcount)) <= 2 and
-                       (white_x - hcount) <= BEAM_LENGTH and (white_y - vcount) <= BEAM_LENGTH then
-                        red <= "1111";
-                        green <= "0000";
-                        blue <= "0000";
-                    end if;
-                when 2 =>  -- Up
-                    if vcount < white_y and vcount >= white_y - BEAM_LENGTH and abs(hcount - white_x) <= 2 then
-                        red <= "1111";
-                        green <= "0000";
-                        blue <= "0000";
-                    end if;
-                when 1 =>  -- Up-Right
-                    if hcount > white_x and vcount < white_y and
-                       abs((hcount - white_x) - (white_y - vcount)) <= 2 and
-                       (hcount - white_x) <= BEAM_LENGTH and (white_y - vcount) <= BEAM_LENGTH then
-                        red <= "1111";
-                        green <= "0000";
-                        blue <= "0000";
-                    end if;
-            end case;
         end if;
+
+        for i in updated_ball_x'range loop
+            if ((hcount - updated_ball_x(i))**2 + (vcount - updated_ball_y(i))**2 <= BALL_RADIUS**2) then
+                case i is
+                    when 2 =>
+                        red <= "0000";
+                        green <= "0000";
+                        blue <= "1111"; -- Blue
+                    when 3 =>
+                        red <= "0000";
+                        green <= "1111";
+                        blue <= "0000"; -- Green
+                    when others => null;
+                end case;
+            end if;
+        end loop;
+
+        -- Draw the beam based on the direction
+        case direction is
+            when 0 =>  -- Right
+                if hcount > white_x and hcount <= white_x + BEAM_LENGTH and abs(vcount - white_y) <= 2 then
+                    red <= "1111";
+                    green <= "0000";
+                    blue <= "0000";
+                end if;
+            when 7 =>  -- Down-Right
+                if hcount > white_x and vcount > white_y and
+                   abs((hcount - white_x) - (vcount - white_y)) <= 2 and
+                   (hcount - white_x) <= BEAM_LENGTH and (vcount - white_y) <= BEAM_LENGTH then
+                    red <= "1111";
+                    green <= "0000";
+                    blue <= "0000";
+                end if;
+            when 6 =>  -- Down
+                if vcount > white_y and vcount <= white_y + BEAM_LENGTH and abs(hcount - white_x) <= 2 then
+                    red <= "1111";
+                    green <= "0000";
+                    blue <= "0000";
+                end if;
+            when 5 =>  -- Down-Left
+                if hcount < white_x and vcount > white_y and
+                   abs((white_x - hcount) - (vcount - white_y)) <= 2 and
+                   (white_x - hcount) <= BEAM_LENGTH and (vcount - white_y) <= BEAM_LENGTH then
+                    red <= "1111";
+                    green <= "0000";
+                    blue <= "0000";
+                end if;
+            when 4 =>  -- Left
+                if hcount < white_x and hcount >= white_x - BEAM_LENGTH and abs(vcount - white_y) <= 2 then
+                    red <= "1111";
+                    green <= "0000";
+                    blue <= "0000";
+                end if;
+            when 3 =>  -- Up-Left
+                if hcount < white_x and vcount < white_y and
+                   abs((white_x - hcount) - (white_y - vcount)) <= 2 and
+                   (white_x - hcount) <= BEAM_LENGTH and (white_y - vcount) <= BEAM_LENGTH then
+                    red <= "1111";
+                    green <= "0000";
+                    blue <= "0000";
+                end if;
+            when 2 =>  -- Up
+                if vcount < white_y and vcount >= white_y - BEAM_LENGTH and abs(hcount - white_x) <= 2 then
+                    red <= "1111";
+                    green <= "0000";
+                    blue <= "0000";
+                end if;
+            when 1 =>  -- Up-Right
+                if hcount > white_x and vcount < white_y and
+                   abs((hcount - white_x) - (white_y - vcount)) <= 2 and
+                   (hcount - white_x) <= BEAM_LENGTH and (white_y - vcount) <= BEAM_LENGTH then
+                    red <= "1111";
+                    green <= "0000";
+                    blue <= "0000";
+                end if;
+        end case;
     else
         -- Outside display area
         red <= "0000";
