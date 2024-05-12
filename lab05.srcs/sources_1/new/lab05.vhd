@@ -62,7 +62,7 @@ architecture vga_driver_arch of vga_driver is
     signal ball_2vx: integer := 0;
     signal ball_2vy: integer := 0;  --initial ball 2 pos, v 
     
-    constant move_pixels: integer := 40;
+    constant move_pixels: integer :=50;
     
     signal new_white_x, new_white_y: integer;
     signal new_ball2_x, new_ball2_y: integer;
@@ -139,16 +139,25 @@ begin
 --                updated_ball2_y := updated_ball2_y + ball_2vy;
                 
                 -- Apply friction (deceleration)
-                if white_vx > 0 then
-                    updated_white_vx := updated_white_vx - (move_pixels / 10);
-                elsif white_vx < 0 then
-                    updated_white_vx := updated_white_vx + (move_pixels / 10);
+                if abs(updated_white_vx) < 2 then
+                    updated_white_vx := 0;
+                else
+                    if updated_white_vx > 0 then
+                        updated_white_vx := updated_white_vx - (move_pixels / 20);
+                    elsif updated_white_vx < 0 then
+                        updated_white_vx := updated_white_vx + (move_pixels / 20);
+                    end if;
                 end if;
-                if white_vy > 0 then
-                    updated_white_vy := updated_white_vy - (move_pixels / 10);
-                elsif white_vy < 0 then
-                    updated_white_vy := updated_white_vy + (move_pixels / 10);
-                end if;       
+                
+                if abs(updated_white_vy) < 2 then
+                    updated_white_vy := 0;
+                else
+                    if updated_white_vy > 0 then
+                        updated_white_vy := updated_white_vy - (move_pixels / 20);
+                    elsif updated_white_vy < 0 then
+                        updated_white_vy := updated_white_vy + (move_pixels / 20);
+                    end if;
+                end if;   
                 
             else
             --- if BTNU = '1' then
@@ -244,16 +253,24 @@ begin
         end if;
 
         -- Apply friction (deceleration) for blue ball
-        if updated_ball2_vx > 0 then
-            updated_ball2_vx := updated_ball2_vx - (move_pixels / 10);
-        elsif updated_ball2_vx < 0 then
-            updated_ball2_vx := updated_ball2_vx + (move_pixels / 10);
+        if abs (updated_ball2_vx) < 5 then
+            updated_ball2_vx := 0;
+        else
+            if updated_ball2_vx > 0 then
+                updated_ball2_vx := updated_ball2_vx - (move_pixels / 10);
+            elsif updated_ball2_vx < 0 then
+                updated_ball2_vx := updated_ball2_vx + (move_pixels / 10);
+            end if;
         end if;
 
-        if updated_ball2_vy > 0 then
-            updated_ball2_vy := updated_ball2_vy - (move_pixels / 10);
-        elsif updated_ball2_vy < 0 then
-            updated_ball2_vy := updated_ball2_vy + (move_pixels / 10);
+        if abs (updated_ball2_vy) < 5 then
+            updated_ball2_vy := 0;
+        else
+            if updated_ball2_vy > 0 then
+                updated_ball2_vy := updated_ball2_vy - (move_pixels / 10);
+            elsif updated_ball2_vy < 0 then
+                updated_ball2_vy := updated_ball2_vy + (move_pixels / 10);
+            end if;
         end if;
     end if;
 end process collision_detection_proc;

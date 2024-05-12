@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Mon May 13 00:30:35 2024
+| Date         : Mon May 13 01:17:32 2024
 | Host         : DESKTOP-J5VP46H running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file vga_driver_control_sets_placed.rpt
 | Design       : vga_driver
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    17 |
-|    Minimum number of control sets                        |    17 |
+| Total control sets                                       |    19 |
+|    Minimum number of control sets                        |    19 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    63 |
+| Unused register locations in slices containing registers |    59 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,7 +39,7 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    17 |
+| Total control sets |    19 |
 | >= 0 to < 4        |     3 |
 | >= 4 to < 6        |     4 |
 | >= 6 to < 8        |     0 |
@@ -47,7 +47,7 @@ Table of Contents
 | >= 10 to < 12      |     0 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
-| >= 16              |    10 |
+| >= 16              |    12 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,9 +58,9 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             195 |           91 |
+| No           | No                    | No                     |             133 |           58 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |             220 |           75 |
+| No           | Yes                   | No                     |             286 |          145 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
 | Yes          | Yes                   | No                     |              98 |           32 |
@@ -74,22 +74,24 @@ Table of Contents
 |  Clock Signal  |    Enable Signal    |          Set/Reset Signal         | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------+---------------------+-----------------------------------+------------------+----------------+--------------+
 |  clk10Hz_BUFG  | Q[7]_i_1_n_0        | white_y[8]_i_1_n_0                |                1 |              1 |         1.00 |
-|  clk10Hz_BUFG  | collision_detected  | Q_reg0__0                         |                2 |              2 |         1.00 |
+|  clk10Hz_BUFG  | collision_detected  | Q_reg0__0                         |                1 |              2 |         2.00 |
 |  clk_IBUF_BUFG |                     |                                   |                2 |              2 |         1.00 |
-|  clk10Hz_BUFG  |                     | updated_ball2_x0                  |                1 |              4 |         4.00 |
-|  clk10Hz_BUFG  |                     | updated_ball2_y0                  |                1 |              4 |         4.00 |
+|  clk10Hz_BUFG  |                     | updated_ball2_x0                  |                3 |              4 |         1.33 |
+|  clk10Hz_BUFG  |                     | updated_ball2_y0                  |                3 |              4 |         1.33 |
 |  clk10Hz_BUFG  | white_x[10]_i_2_n_0 | white_x[10]_i_1_n_0               |                1 |              4 |         4.00 |
-|  clk10Hz_BUFG  | white_y[8]_i_2_n_0  | white_y[8]_i_1_n_0                |                1 |              4 |         4.00 |
-|  clk10Hz_BUFG  | white_y[31]_i_2_n_0 | white_y[31]_i_1_n_0               |                9 |             27 |         3.00 |
+|  clk10Hz_BUFG  | white_y[8]_i_2_n_0  | white_y[8]_i_1_n_0                |                3 |              4 |         1.33 |
+|  clk10Hz_BUFG  | white_y[31]_i_2_n_0 | white_y[31]_i_1_n_0               |                8 |             27 |         3.38 |
 |  clk10Hz_BUFG  |                     | updated_ball2_x[31]_i_1_n_0       |                8 |             28 |         3.50 |
 |  clk10Hz_BUFG  |                     | updated_ball2_y[31]_i_1_n_0       |                8 |             28 |         3.50 |
 |  clk10Hz_BUFG  | white_y[31]_i_2_n_0 | white_x[31]_i_1_n_0               |                9 |             28 |         3.11 |
-|  clk50MHz_BUFG |                     | hcount[31]_i_1_n_0                |                9 |             32 |         3.56 |
-|  clk50MHz_BUFG | hcount[31]_i_1_n_0  | vcount[31]_i_1_n_0                |                9 |             32 |         3.56 |
+|  clk10Hz_BUFG  |                     | updated_ball2_vx[31]_i_1_n_0      |               25 |             32 |         1.28 |
+|  clk10Hz_BUFG  |                     | updated_ball2_vy[31]_i_1_n_0      |               25 |             32 |         1.28 |
 |  clk_IBUF_BUFG |                     | comp_clk50MHz/pulse               |                9 |             32 |         3.56 |
 |  clk_IBUF_BUFG |                     | comp_clk10Hz/count[31]_i_1__0_n_0 |                9 |             32 |         3.56 |
-|  clk10Hz_BUFG  |                     | updated_white_vx0                 |               30 |             60 |         2.00 |
-|  clk10Hz_BUFG  |                     |                                   |               89 |            193 |         2.17 |
+|  clk50MHz_BUFG |                     | hcount[31]_i_1_n_0                |                9 |             32 |         3.56 |
+|  clk50MHz_BUFG | vcount              | vcount[31]_i_1_n_0                |                9 |             32 |         3.56 |
+|  clk10Hz_BUFG  |                     | updated_white_vx0                 |               46 |             62 |         1.35 |
+|  clk10Hz_BUFG  |                     |                                   |               56 |            131 |         2.34 |
 +----------------+---------------------+-----------------------------------+------------------+----------------+--------------+
 
 
