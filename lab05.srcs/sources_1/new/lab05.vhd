@@ -62,7 +62,7 @@ architecture vga_driver_arch of vga_driver is
     signal ball_2vx: integer := 0;
     signal ball_2vy: integer := 0;  --initial ball 2 pos, v 
     
-    constant move_pixels: integer := 15;
+    constant move_pixels: integer := 40;
     
     signal new_white_x, new_white_y: integer;
     signal new_ball2_x, new_ball2_y: integer;
@@ -125,27 +125,37 @@ begin
                     white_x <= H_END - 100 -  BALL_RADIUS;
                     updated_white_vx := -updated_white_vx;
                 end if;
+                Q(7) <= '0';
                 if (white_y < V_START + 60) then
+                    Q(7) <= '1'; 
                     white_y <= V_START + BALL_RADIUS + 60;
                     updated_white_vy := -white_vy;
                 elsif (white_y > V_END - 100) then
                     white_y <= V_END - BALL_RADIUS - 100;
                     updated_white_vy := -white_vy;
                 end if;
-                                
+                
+                if (white_vx < 0) then
+                    Q(6) <= '1';
+                    Q(5) <= '0';
+                else
+                    Q(6) <= '0';
+                    Q(5) <= '1';
+                end if;
+                    
 --                updated_ball2_x := updated_ball2_x+ ball_2vx;
 --                updated_ball2_y := updated_ball2_y + ball_2vy;
                 
                 -- Apply friction (deceleration)
                 if white_vx > 0 then
-                    updated_white_vx := white_vx - 1;
+                    updated_white_vx := white_vx - (move_pixels / 10);
                 elsif white_vx < 0 then
-                    updated_white_vx := white_vx + 1;
+                    updated_white_vx := white_vx + (move_pixels / 10);
                 end if;
                 if white_vy > 0 then
-                    updated_white_vy := white_vy - 1;
+                    updated_white_vy := white_vy - (move_pixels / 10);
                 elsif white_vy < 0 then
-                    updated_white_vy := white_vy + 1;
+                    updated_white_vy := white_vy + (move_pixels / 10);
                 end if;               
                 
             else
@@ -177,6 +187,7 @@ begin
                     updated_white_vy := move_pixels;
                 when others => null;
             end case;
+            
             end if;
         end if;
     end process white_ball_movement_proc;

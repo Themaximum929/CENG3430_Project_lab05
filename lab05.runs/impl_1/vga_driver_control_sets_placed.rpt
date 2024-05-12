@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Sun May 12 18:45:02 2024
+| Date         : Sun May 12 21:44:52 2024
 | Host         : DESKTOP-J5VP46H running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file vga_driver_control_sets_placed.rpt
 | Design       : vga_driver
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    19 |
-|    Minimum number of control sets                        |    19 |
+| Total control sets                                       |    21 |
+|    Minimum number of control sets                        |    21 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    62 |
+| Unused register locations in slices containing registers |    77 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,8 +39,8 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    19 |
-| >= 0 to < 4        |     3 |
+| Total control sets |    21 |
+| >= 0 to < 4        |     5 |
 | >= 4 to < 6        |     5 |
 | >= 6 to < 8        |     0 |
 | >= 8 to < 10       |     0 |
@@ -58,12 +58,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             200 |           81 |
+| No           | No                    | No                     |             198 |           76 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |             160 |           47 |
-| Yes          | No                    | No                     |              37 |           17 |
+| No           | Yes                   | No                     |             160 |           45 |
+| Yes          | No                    | No                     |              38 |           19 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             125 |           37 |
+| Yes          | Yes                   | No                     |             127 |           38 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -73,25 +73,27 @@ Table of Contents
 +----------------+------------------------------+-----------------------------------+------------------+----------------+--------------+
 |  Clock Signal  |         Enable Signal        |          Set/Reset Signal         | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------+------------------------------+-----------------------------------+------------------+----------------+--------------+
-|  clk50MHz_BUFG | hcount[31]_i_1_n_0           |                                   |                1 |              1 |         1.00 |
-|  clk10Hz_BUFG  | Q0                           | Q[1]_i_1_n_0                      |                1 |              2 |         2.00 |
+|  clk10Hz_BUFG  | Q[7]_i_1_n_0                 | white_y[8]_i_1_n_0                |                1 |              1 |         1.00 |
+|  clk50MHz_BUFG | vcount                       |                                   |                1 |              1 |         1.00 |
 |  clk_IBUF_BUFG |                              |                                   |                2 |              2 |         1.00 |
+|  clk10Hz_BUFG  | collision_detected           | Q_reg0__0                         |                1 |              2 |         2.00 |
+|  clk10Hz_BUFG  | Q[6]_i_2_n_0                 | Q[6]_i_1_n_0                      |                1 |              2 |         2.00 |
 |  clk10Hz_BUFG  |                              | updated_ball2_x0                  |                1 |              4 |         4.00 |
-|  clk10Hz_BUFG  |                              | updated_ball2_y0                  |                3 |              4 |         1.33 |
-|  clk10Hz_BUFG  | updated_white_vx[3]_i_1_n_0  |                                   |                2 |              4 |         2.00 |
+|  clk10Hz_BUFG  |                              | updated_ball2_y0                  |                1 |              4 |         4.00 |
 |  clk10Hz_BUFG  | white_x[10]_i_2_n_0          | white_x[10]_i_1_n_0               |                1 |              4 |         4.00 |
 |  clk10Hz_BUFG  | white_y[8]_i_2_n_0           | white_y[8]_i_1_n_0                |                1 |              4 |         4.00 |
+|  clk10Hz_BUFG  | updated_white_vx[5]_i_1_n_0  |                                   |                3 |              5 |         1.67 |
+|  clk10Hz_BUFG  | updated_white_vx[5]_i_1_n_0  | updated_white_vx[31]_i_1_n_0      |                9 |             27 |         3.00 |
 |  clk10Hz_BUFG  |                              | updated_ball2_x[31]_i_1_n_0       |                8 |             28 |         3.50 |
 |  clk10Hz_BUFG  |                              | updated_ball2_y[31]_i_1_n_0       |                8 |             28 |         3.50 |
-|  clk10Hz_BUFG  | updated_white_vx[3]_i_1_n_0  | updated_white_vx[31]_i_1_n_0      |               10 |             28 |         2.80 |
 |  clk10Hz_BUFG  | white_y[31]_i_2_n_0          | white_x[31]_i_1_n_0               |                8 |             28 |         3.50 |
 |  clk10Hz_BUFG  | white_y[31]_i_2_n_0          | white_y[31]_i_1_n_0               |                8 |             28 |         3.50 |
-|  clk50MHz_BUFG | hcount[31]_i_1_n_0           | vcount[31]_i_1_n_0                |                8 |             31 |         3.88 |
-|  clk10Hz_BUFG  | updated_white_vy[31]_i_1_n_0 |                                   |               14 |             32 |         2.29 |
-|  clk50MHz_BUFG |                              | hcount[31]_i_1_n_0                |                9 |             32 |         3.56 |
+|  clk50MHz_BUFG | vcount                       | vcount[31]_i_1_n_0                |                8 |             31 |         3.88 |
 |  clk_IBUF_BUFG |                              | comp_clk50MHz/pulse               |                9 |             32 |         3.56 |
 |  clk_IBUF_BUFG |                              | comp_clk10Hz/count[31]_i_1__0_n_0 |                9 |             32 |         3.56 |
-|  clk10Hz_BUFG  |                              |                                   |               79 |            198 |         2.51 |
+|  clk10Hz_BUFG  | updated_white_vy[31]_i_1_n_0 |                                   |               15 |             32 |         2.13 |
+|  clk50MHz_BUFG |                              | hcount[31]_i_1_n_0                |                9 |             32 |         3.56 |
+|  clk10Hz_BUFG  |                              |                                   |               74 |            196 |         2.65 |
 +----------------+------------------------------+-----------------------------------+------------------+----------------+--------------+
 
 
