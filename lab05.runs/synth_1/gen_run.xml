@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1715497015" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/vga_driver.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1715510631" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/vga_driver.dcp">
   <File Type="PA-TCL" Name="vga_driver.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="vga_driver_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="vga_driver_reports.tcl"/>

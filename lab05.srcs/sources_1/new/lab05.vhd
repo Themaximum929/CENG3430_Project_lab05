@@ -77,7 +77,8 @@ architecture vga_driver_arch of vga_driver is
     signal ball_2x_next, ball_2y_next: integer;
     
     shared variable updated_white_vx, updated_white_vy : integer := 0;
-    shared variable updated_ball2_x, updated_ball2_y : integer := 0;
+    shared variable updated_ball2_x: integer := 712; 
+    shared variable updated_ball2_y: integer := 300; 
     shared variable updated_ball2_vx, updated_ball2_vy : integer := 0;
     
 begin
