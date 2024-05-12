@@ -70,6 +70,18 @@ architecture vga_driver_arch of vga_driver is
     shared variable updated_white_vx, updated_white_vy : integer := 0;
     shared variable updated_ball2_vx, updated_ball2_vy : integer := 0; -- For velocity modification inside process
     
+    -- For multi-ball declaration
+    type ball_array_t is array (2 to 2) of integer;
+    signal updated_ball_x : ball_array_t := (2 => 712);
+    signal updated_ball_y : ball_array_t := (2 => 300);
+    signal updated_ball_vx: ball_array_t := (others => 0);
+    signal updated_ball_vy: ball_array_t := (others => 0);
+    
+    
+    
+    
+    
+    
 begin
     --- Generate 50MHz clock
     comp_clk50MHz: clock_divider generic map (N => 1) port map(clk, clk50MHz);
