@@ -216,7 +216,7 @@ begin
         
         -- Collision between ball and ball
         for i in updated_ball_x'range loop
-            for j in i+1 to 3 loop
+            for j in i+1 to 1 loop
                 dx := new_white_x - updated_ball_x(i);
                 dy := new_white_y - updated_ball_y(i);
                 distance_squared := dx*dx + dy*dy;
@@ -224,8 +224,10 @@ begin
                 if distance_squared <= (2 * BALL_RADIUS) ** 2 and collision_detected = '0' then
                     collision_detected <= '1'; -- Set collision detected flag
                     
-                    updated_ball_vx(j) := updated_ball_vx(i) * 2;
-                    updated_ball_vy(j) := updated_ball_vy(i) * 2;
+                        updated_ball_vx(i) := updated_ball_vx(i) - (2 * (updated_ball_vx(i) - updated_ball_vx(j)) * dx * dx + (updated_ball_vy(i) - updated_ball_vy(j)) * dx * dy) / (dx * dx + dy * dy);
+                        updated_ball_vy(i) := updated_ball_vy(i) - (2 * (updated_ball_vx(i) - updated_ball_vx(j)) * dx * dy + (updated_ball_vy(i) - updated_ball_vy(j)) * dy * dy) / (dx * dx + dy * dy);
+                        updated_ball_vx(j) := updated_ball_vx(j) - (2 * (updated_ball_vx(j) - updated_ball_vx(i)) * dx * dx + (updated_ball_vy(j) - updated_ball_vy(i)) * dx * dy) / (dx * dx + dy * dy);
+                        updated_ball_vy(j) := updated_ball_vy(j) - (2 * (updated_ball_vx(j) - updated_ball_vx(i)) * dx * dy + (updated_ball_vy(j) - updated_ball_vy(i)) * dy * dy) / (dx * dx + dy * dy);
                 elsif distance_squared > (2 * BALL_RADIUS) ** 2 then
                     collision_detected <= '0'; 
                 end if;
