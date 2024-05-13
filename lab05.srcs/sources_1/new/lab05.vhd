@@ -72,9 +72,9 @@ architecture vga_driver_arch of vga_driver is
     
     -- For multi-ball declaration
     type ball_array_t is array (2 to 3) of integer;
-    signal ball_x : ball_array_t := (2 => 712, 3 => 752);
-    signal ball_y : ball_array_t := (2 => 712, 3 => 752);
-    shared variable updated_ball_x : ball_array_t := (2 => 712, 3 => 752);
+    signal ball_x : ball_array_t := (2 => 712, 3 => 800);
+    signal ball_y : ball_array_t := (2 => 300, 3 => 300);
+    shared variable updated_ball_x : ball_array_t := (2 => 712, 3 => 800);
     shared variable updated_ball_y : ball_array_t := (2 => 300, 3 => 300);
     shared variable updated_ball_vx: ball_array_t := (others => 0);
     shared variable updated_ball_vy: ball_array_t := (others => 0);
@@ -214,25 +214,28 @@ begin
             end if;
         end loop;
         
-        -- Collision between ball and ball
+        -- Collision between color balls
         for i in updated_ball_x'range loop
-            for j in i+1 to 1 loop
-                dx := new_white_x - updated_ball_x(i);
-                dy := new_white_y - updated_ball_y(i);
-                distance_squared := dx*dx + dy*dy;
-                
-                if distance_squared <= (2 * BALL_RADIUS) ** 2 and collision_detected = '0' then
-                    collision_detected <= '1'; -- Set collision detected flag
+            for j in updated_ball_x'range loop
+                if i /= j then -- Skip the same ball
+                    dx := updated_ball_x(i) - updated_ball_x(j);
+                    dy := updated_ball_y(i) - updated_ball_y(j);
+                    distance_squared := dx*dx + dy*dy;
                     
+                    if distance_squared <= (2 * BALL_RADIUS) ** 2 and collision_detected = '0' then
+                        collision_detected <= '1'; -- Set collision detected flag
+                        
+                        -- Update velocities based on elastic collision
                         updated_ball_vx(i) := updated_ball_vx(i) - (2 * (updated_ball_vx(i) - updated_ball_vx(j)) * dx * dx + (updated_ball_vy(i) - updated_ball_vy(j)) * dx * dy) / (dx * dx + dy * dy);
                         updated_ball_vy(i) := updated_ball_vy(i) - (2 * (updated_ball_vx(i) - updated_ball_vx(j)) * dx * dy + (updated_ball_vy(i) - updated_ball_vy(j)) * dy * dy) / (dx * dx + dy * dy);
                         updated_ball_vx(j) := updated_ball_vx(j) - (2 * (updated_ball_vx(j) - updated_ball_vx(i)) * dx * dx + (updated_ball_vy(j) - updated_ball_vy(i)) * dx * dy) / (dx * dx + dy * dy);
                         updated_ball_vy(j) := updated_ball_vy(j) - (2 * (updated_ball_vx(j) - updated_ball_vx(i)) * dx * dy + (updated_ball_vy(j) - updated_ball_vy(i)) * dy * dy) / (dx * dx + dy * dy);
-                elsif distance_squared > (2 * BALL_RADIUS) ** 2 then
-                    collision_detected <= '0'; 
+                    elsif distance_squared > (2 * BALL_RADIUS) ** 2 then
+                        collision_detected <= '0'; 
+                    end if;
                 end if;
             end loop;
-        end loop;        
+        end loop; 
         
         -- Update ball position and velocity
         for i in updated_ball_x'range loop
